@@ -22,6 +22,7 @@ public class MultipleDaysTicket implements Ticket {
     private int displayPrice;
     private int remainingDays;
     private String ticketLabel;
+    private boolean alreadyIn = false;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -40,6 +41,7 @@ public class MultipleDaysTicket implements Ticket {
             throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
         }
         --remainingDays;
+        alreadyIn = true;
     }
 
     // ===================================================================================
@@ -50,4 +52,6 @@ public class MultipleDaysTicket implements Ticket {
     }
 
     public String getTicketLabel() { return ticketLabel; }
+
+    public boolean isAlreadyIn() { return alreadyIn; }
 }

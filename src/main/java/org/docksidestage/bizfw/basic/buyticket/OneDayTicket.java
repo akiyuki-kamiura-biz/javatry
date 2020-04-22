@@ -47,4 +47,6 @@ public class OneDayTicket implements Ticket {
     public int getDisplayPrice() { return displayPrice; }
 
     public String getTicketLabel() { return ticketLabel; }
+
+    public boolean isAlreadyIn () { return alreadyIn; }
 }

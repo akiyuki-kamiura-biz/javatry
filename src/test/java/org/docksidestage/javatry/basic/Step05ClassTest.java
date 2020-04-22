@@ -154,9 +154,9 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBuyResult tbr = booth.buyOneDayPassport(10000);
         Ticket oneDayPassport = tbr.getTicket();
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
-//        log(oneDayPassport.isAlreadyIn()); // should be false
+        log(oneDayPassport.isAlreadyIn()); // should be false
         oneDayPassport.doInPark();
-//        log(oneDayPassport.isAlreadyIn()); // should be true
+        log(oneDayPassport.isAlreadyIn()); // should be true
 
         // お釣りとチケットを戻すためにコメントアウトしました
     }
@@ -181,14 +181,11 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_type() {
         // your confirmation code here
-//        TicketBooth booth = new TicketBooth();
-//        int handedMoney = 20000;
-//        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
-//        Ticket oneDayPassport = oneDayPassportResult.getTicket();
-//        log(oneDayPassport.getTicketType());
-
-        // DaysType を見分けるための ラベルを返すようなメソッドを実装するべきかわからなかったので
-        // 実装していません
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 20000;
+        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
+        Ticket oneDayPassport = oneDayPassportResult.getTicket();
+        log(oneDayPassport.getTicketLabel());
     }
 
     // ===================================================================================
