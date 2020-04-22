@@ -203,8 +203,14 @@ public class Step01VariableTest extends PlainTestCase {
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
+    private int piari;
     public void test_variable_writing() {
         // define variables here
+        String sea = "mystic";
+        Integer land = null;
+
+        String output = sea + "." + land + "." + piari;
+        log(output);
     }
 
     // ===================================================================================
@@ -215,12 +221,22 @@ public class Step01VariableTest extends PlainTestCase {
      * (変数についてあなたのオリジナルの質問形式のエクササイズを作ってみましょう)
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-     * your question here (ここにあなたの質問を):
+     * your question here (ここにあなたの質問を): プリミティブ型の変数について、初期値を調べよう
      * 
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
+    private boolean boolVal;
+    private char charVal;
+    private byte byteVal;
+    private short shortVal;
+    private int intVal;
+    private long longVal;
+    private float floatVal;
+    private double doubleVal;
     public void test_variable_yourExercise() {
         // write your code here
+        String output = boolVal + "|" + byteVal + "|" + shortVal + "|" + intVal + "|" + longVal + "|" + floatVal + "|" + doubleVal;
+        log(output);
     }
 }
