@@ -167,12 +167,12 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageListContainA = new ArrayList<>();
 
         for (String stage : stageList) {
-            if (stage.contains("a")){
+            if (stage.contains("a")) {
                 stageListContainA.add(stage);
             }
         }
 
-        for (String stage : stageListContainA){
+        for (String stage : stageListContainA) {
             log(stage);
         }
     }
@@ -186,8 +186,8 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
-        String[] sea = {null};
-        boolean[] isEnd = {false};
+        String[] sea = { null };
+        boolean[] isEnd = { false };
         stageList.forEach(stage -> {
             if (stage.startsWith("br") || isEnd[0]) {
                 return;
@@ -210,7 +210,7 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を): どのような外部変数ならforEachの中で変更できるのかを調べよう
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
@@ -218,12 +218,13 @@ public class Step02IfForTest extends PlainTestCase {
         // write your code here
         List<String> stageList = prepareStageList();
 
-        Integer[] intVar = {null};
-        char[] charVar = {0};
+        Integer[] intVar = { null };
+        char[] charVar = { 0 };
         StringBuilder sb = new StringBuilder();
 
         stageList.forEach(stage -> {
             intVar[0] = 9;
+            // NOTE charには '0'でアサインできるが数字はアサインできない(primitive typeだから)ので、反映してくれないね winkichanwi
             charVar[0] = 0;
             sb.append(stage);
         });
@@ -242,6 +243,7 @@ public class Step02IfForTest extends PlainTestCase {
         stageList.add("dockside");
         stageList.add("hangar");
         stageList.add("magiclamp");
+        stageList.add("bagar");
         return stageList;
     }
 }
