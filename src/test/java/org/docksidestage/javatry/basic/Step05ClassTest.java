@@ -15,7 +15,8 @@
  */
 package org.docksidestage.javatry.basic;
 
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
+import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
+import org.docksidestage.bizfw.basic.buyticket.MultipleDaysTicket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
@@ -165,12 +166,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_return_whole() {
         // comment out after modifying the method
-        TicketBooth booth = new TicketBooth();
-        int handedMoney = 20000;
-        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
-        Ticket twoDayPassport = twoDayPassportResult.getTicket();
-        int change = twoDayPassportResult.getChange();
-        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
+//        TicketBooth booth = new TicketBooth();
+//        int handedMoney = 20000;
+//        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+//        Ticket twoDayPassport = twoDayPassportResult.getTicket();
+//        int change = twoDayPassportResult.getChange();
+//        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
     }
 
     /**
@@ -179,11 +180,11 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_type() {
         // your confirmation code here
-        TicketBooth booth = new TicketBooth();
-        int handedMoney = 20000;
-        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
-        Ticket oneDayPassport = oneDayPassportResult.getTicket();
-        log(oneDayPassport.getTicketType());
+//        TicketBooth booth = new TicketBooth();
+//        int handedMoney = 20000;
+//        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
+//        Ticket oneDayPassport = oneDayPassportResult.getTicket();
+//        log(oneDayPassport.getTicketType());
     }
 
     // ===================================================================================
@@ -207,6 +208,17 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_useInterface() {
         // your confirmation code here
+        MultipleDaysTicket fourDaysTicket = new MultipleDaysTicket(20000, 4);
+        for (int day = 0; day < 4; day++){
+            fourDaysTicket.doInPark();
+        }
+
+        MultipleDaysTicket fiveDaysTicket = new MultipleDaysTicket(20000, 4);
+        for (int day = 0; day < 6; day++){
+            fourDaysTicket.doInPark();
+        }
+
+        // Ticket クラスを変更したことによって大量のStep6の問題と競合を起こしてしまいました
     }
 
     /**

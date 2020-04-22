@@ -67,7 +67,7 @@ public class TicketBooth {
         judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
         --oneDayQuantity;
         int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
-        Ticket oneDayTicket = new Ticket(ONE_DAY_PRICE, Ticket.TicketType.OneDay);
+        Ticket oneDayTicket = new OneDayTicket(ONE_DAY_PRICE);
         TicketBuyResult tbr = new TicketBuyResult(oneDayTicket, change);
         return tbr;
     }
@@ -77,7 +77,7 @@ public class TicketBooth {
         --twoDayQuantity;
 
         int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
-        Ticket twoDayTicket = new Ticket(TWO_DAY_PRICE, Ticket.TicketType.TwoDay);
+        Ticket twoDayTicket = new MultipleDaysTicket(TWO_DAY_PRICE, 2);
 
         TicketBuyResult tbr = new TicketBuyResult(twoDayTicket, change);
         return tbr;

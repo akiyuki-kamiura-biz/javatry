@@ -133,7 +133,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/
         //Ticket ticket = booth.buyOneDayPassport(10000);
         booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
-        Ticket ticket = new Ticket(7400, Ticket.TicketType.OneDay); // also here
+//        Ticket ticket = new Ticket(7400, Ticket.TicketType.OneDay); // also here
 
         // *buyOneDayPassport() has this process:
         //if (quantity <= 0) {
@@ -156,7 +156,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [do in park now!!!]
         //
-        ticket.doInPark();
+//        ticket.doInPark();
 
         // *doInPark() has this process:
         //if (alreadyIn) {
@@ -167,23 +167,23 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [final process]
         //
-        saveBuyingHistory(booth, ticket);
+//        saveBuyingHistory(booth, ticket);
     }
 
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
-        if (ticket.isAlreadyIn()) {
-            // only logging here (normally e.g. DB insert)
-            doShowTicketBooth(booth);
-            doShowYourTicket(ticket);
-        }
+//        if (ticket.isAlreadyIn()) {
+//            // only logging here (normally e.g. DB insert)
+//            doShowTicketBooth(booth);
+//            doShowYourTicket(ticket);
+//        }
     }
 
     private void doShowTicketBooth(TicketBooth booth) {
-        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getOneDayQuantity(), booth.getSalesProceeds());
+//        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getOneDayQuantity(), booth.getSalesProceeds());
     }
 
     private void doShowYourTicket(Ticket ticket) {
-        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
+//        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
     }
 
     // ===================================================================================

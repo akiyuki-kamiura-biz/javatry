@@ -18,48 +18,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 /**
  * @author jflute
  */
-public class Ticket {
-
-    // ===================================================================================
-    //                                                                           Attribute
-    //                                                                           =========
-    private final int displayPrice;
-    private boolean alreadyIn;
-    public enum TicketType {
-        OneDay,
-        TwoDay
-    }
-    private TicketType ticketType;
-
-    // ===================================================================================
-    //                                                                         Constructor
-    //                                                                         ===========
-    public Ticket(int displayPrice, TicketType ticketType) {
-        this.displayPrice = displayPrice;
-        this.ticketType = ticketType;
-    }
-
-    // ===================================================================================
-    //                                                                             In Park
-    //                                                                             =======
-    public void doInPark() {
-        if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
-        alreadyIn = true;
-    }
-
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    public int getDisplayPrice() {
-        return displayPrice;
-    }
-
-    public boolean isAlreadyIn() {
-        return alreadyIn;
-    }
-
-    public TicketType getTicketType() { return ticketType; }
-
+public interface Ticket {
+    void doInPark();
+    int getDisplayPrice();
 }
