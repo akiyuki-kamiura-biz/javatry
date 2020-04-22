@@ -167,12 +167,12 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageListContainA = new ArrayList<>();
 
         for (String stage : stageList) {
-            if (stage.contains("a")){
+            if (stage.contains("a")) {
                 stageListContainA.add(stage);
             }
         }
 
-        for (String stage : stageListContainA){
+        for (String stage : stageListContainA) {
             log(stage);
         }
     }
@@ -186,8 +186,8 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_refactor_foreach_to_forEach() {
         List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
-        String[] sea = {null};
-        boolean[] isEnd = {false};
+        String[] sea = { null };
+        boolean[] isEnd = { false };
         stageList.forEach(stage -> {
             if (stage.startsWith("br") || isEnd[0]) {
                 return;
@@ -197,11 +197,26 @@ public class Step02IfForTest extends PlainTestCase {
                 isEnd[0] = true;
             }
         });
+        // TODO kamiura 一応、自分の Eclipse 上だと、このような警告が出ています by jflute (2020/04/22)
+        // Type String[] of the last argument to method log(Object...) doesn't exactly match the vararg parameter type.
+        // Cast to Object[] to confirm the non-varargs invocation,
+        // or pass individual arguments of type Object for a varargs invocation
+        // log()メソッドが可変長引数なので配列をそのまま入れると、exactly match にならないということですね。
+        // 警告なので動かなくはないけど、ちょっと危険なので、もうちょい明示的な方が安全だということですね。
+        // でも、log((Object[]) sea); は相当気持ち悪いですね。。。
         log(sea); // should be same as before-fix
 
         // 外部の変数がfinal化されてしまう問題について、
         // 参照型の変数を使用することで克服しました
         // もう少し上手いやり方があるなら教えていただきたいです。
+        //
+        // TODO kamiura すごい回避の仕方。でもこれしかないですね by jflute (2020/04/22)
+        // Javaは安全のためにコールバック内で利用する変数は自然とfinalにしています。
+        // (コールバックは、厳密にはいつどういうタイミングで実行されるかわからない、というのもあって)
+        // なので、こういうことをやりたくなったら、isEndみたいに配列とかのオブジェクトにします。
+        //
+        // そもそも、このように外側の変数を書き換える必要があるようなループの場合は、forEach()メソッドは向いていないとも言えます。
+        // 一方で、forEach()メソッドは、「外側の変数を間違えて書き換えてしまう危険性が少ないやり方」と言えます。適材適所ですね。
     }
 
     /**
@@ -218,8 +233,8 @@ public class Step02IfForTest extends PlainTestCase {
         // write your code here
         List<String> stageList = prepareStageList();
 
-        Integer[] intVar = {null};
-        char[] charVar = {0};
+        Integer[] intVar = { null };
+        char[] charVar = { 0 };
         StringBuilder sb = new StringBuilder();
 
         stageList.forEach(stage -> {
