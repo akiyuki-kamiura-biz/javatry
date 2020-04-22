@@ -225,7 +225,7 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を): どのような外部変数ならforEachの中で変更できるのかを調べよう
-     * 
+     *
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
@@ -239,6 +239,7 @@ public class Step02IfForTest extends PlainTestCase {
 
         stageList.forEach(stage -> {
             intVar[0] = 9;
+            // NOTE charには '0'でアサインできるが数字はアサインできない(primitive typeだから)ので、反映してくれないね winkichanwi
             charVar[0] = 0;
             sb.append(stage);
         });
@@ -257,6 +258,7 @@ public class Step02IfForTest extends PlainTestCase {
         stageList.add("dockside");
         stageList.add("hangar");
         stageList.add("magiclamp");
+        stageList.add("bagar");
         return stageList;
     }
 }
