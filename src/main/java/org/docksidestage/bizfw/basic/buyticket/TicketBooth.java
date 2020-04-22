@@ -63,22 +63,24 @@ public class TicketBooth {
         return handedMoney - ticketPrice;
     }
 
-    public Ticket buyOneDayPassport(int handedMoney) {
+    public TicketBuyResult buyOneDayPassport(int handedMoney) {
         judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
         --oneDayQuantity;
         int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
-
-        Ticket oneDayTicket = new Ticket(ONE_DAY_PRICE);
-        return oneDayTicket;
+        Ticket oneDayTicket = new Ticket(ONE_DAY_PRICE, Ticket.TicketType.OneDay);
+        TicketBuyResult tbr = new TicketBuyResult(oneDayTicket, change);
+        return tbr;
     }
 
-    public Ticket buyTwoDayPassport(int handedMoney) {
+    public TicketBuyResult buyTwoDayPassport(int handedMoney) {
         judgePassportAvailable(handedMoney, TWO_DAY_PRICE, oneDayQuantity);
         --twoDayQuantity;
-        int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
 
-        Ticket twoDayTicket = new Ticket(TWO_DAY_PRICE);
-        return twoDayTicket;
+        int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
+        Ticket twoDayTicket = new Ticket(TWO_DAY_PRICE, Ticket.TicketType.TwoDay);
+
+        TicketBuyResult tbr = new TicketBuyResult(twoDayTicket, change);
+        return tbr;
     }
 
     public static class TicketSoldOutException extends RuntimeException {

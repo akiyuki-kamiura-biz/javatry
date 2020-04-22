@@ -15,51 +15,30 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-/**
- * @author jflute
- */
-public class Ticket {
-
+public class TicketBuyResult {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final int displayPrice;
-    private boolean alreadyIn;
-    public enum TicketType {
-        OneDay,
-        TwoDay
-    }
-    private TicketType ticketType;
+    private final int change;
+    private Ticket ticket;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice, TicketType ticketType) {
-        this.displayPrice = displayPrice;
-        this.ticketType = ticketType;
-    }
-
-    // ===================================================================================
-    //                                                                             In Park
-    //                                                                             =======
-    public void doInPark() {
-        if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
-        alreadyIn = true;
+    public TicketBuyResult(Ticket ticket, int changePrice) {
+        this.change = changePrice;
+        this.ticket = ticket;
     }
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    public int getDisplayPrice() {
-        return displayPrice;
+
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public boolean isAlreadyIn() {
-        return alreadyIn;
+    public int getChange() {
+        return change;
     }
-
-    public TicketType getTicketType() { return ticketType; }
-
 }
