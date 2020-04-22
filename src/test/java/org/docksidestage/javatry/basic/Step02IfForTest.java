@@ -112,17 +112,18 @@ public class Step02IfForTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_basic() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
         String sea = null;
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
+        // 便利な書き方ができる
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_continueBreak() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
         String sea = null;
         for (String stage : stageList) {
             if (stage.startsWith("br")) {
@@ -133,12 +134,12 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
-        List<String> stageList = prepareStageList();
+        List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
         StringBuilder sb = new StringBuilder();
         stageList.forEach(stage -> {
             if (sb.length() > 0) {
@@ -149,7 +150,8 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
+        // 書き方が特徴的...
     }
 
     // ===================================================================================
