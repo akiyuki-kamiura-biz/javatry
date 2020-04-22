@@ -206,6 +206,7 @@ public class Step01VariableTest extends PlainTestCase {
      * </pre>
      */
     private int piari;
+
     public void test_variable_writing() {
         // define variables here
         String sea = "mystic";
@@ -229,6 +230,7 @@ public class Step01VariableTest extends PlainTestCase {
      * </pre>
      */
     private boolean boolVal;
+    // TODO kamiura charValで、unusedの警告が出ていますね。。。 by jflute (2020/04/22)
     private char charVal;
     private byte byteVal;
     private short shortVal;
@@ -236,6 +238,7 @@ public class Step01VariableTest extends PlainTestCase {
     private long longVal;
     private float floatVal;
     private double doubleVal;
+
     public void test_variable_yourExercise() {
         // write your code here
         String output = boolVal + "|" + byteVal + "|" + shortVal + "|" + intVal + "|" + longVal + "|" + floatVal + "|" + doubleVal;
