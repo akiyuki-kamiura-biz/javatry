@@ -188,6 +188,7 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
         String[] sea = { null };
         boolean[] isEnd = { false };
+
         stageList.forEach(stage -> {
             if (stage.startsWith("br") || isEnd[0]) {
                 return;
@@ -204,7 +205,7 @@ public class Step02IfForTest extends PlainTestCase {
         // log()メソッドが可変長引数なので配列をそのまま入れると、exactly match にならないということですね。
         // 警告なので動かなくはないけど、ちょっと危険なので、もうちょい明示的な方が安全だということですね。
         // でも、log((Object[]) sea); は相当気持ち悪いですね。。。
-        log(sea); // should be same as before-fix
+        log(sea[0]); // should be same as before-fix
 
         // 外部の変数がfinal化されてしまう問題について、
         // 参照型の変数を使用することで克服しました
