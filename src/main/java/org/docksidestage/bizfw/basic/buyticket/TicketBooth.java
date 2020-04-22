@@ -63,18 +63,22 @@ public class TicketBooth {
         return handedMoney - ticketPrice;
     }
 
-    public int buyOneDayPassport(int handedMoney) {
+    public Ticket buyOneDayPassport(int handedMoney) {
         judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
         --oneDayQuantity;
         int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
-        return change;
+
+        Ticket oneDayTicket = new Ticket(ONE_DAY_PRICE);
+        return oneDayTicket;
     }
 
-    public int buyTwoDayPassport(int handedMoney) {
+    public Ticket buyTwoDayPassport(int handedMoney) {
         judgePassportAvailable(handedMoney, TWO_DAY_PRICE, oneDayQuantity);
         --twoDayQuantity;
         int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
-        return change;
+
+        Ticket twoDayTicket = new Ticket(TWO_DAY_PRICE);
+        return twoDayTicket;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
