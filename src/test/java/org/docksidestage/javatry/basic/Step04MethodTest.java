@@ -35,7 +35,8 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_call_basic() {
         String sea = supplySomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? => over
+        // return で返された値の代入
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -43,7 +44,7 @@ public class Step04MethodTest extends PlainTestCase {
         String sea = functionSomething("mystic");
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
     }
 
     private String functionSomething(String name) {
