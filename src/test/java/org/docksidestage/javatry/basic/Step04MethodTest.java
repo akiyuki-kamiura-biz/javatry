@@ -147,20 +147,44 @@ public class Step04MethodTest extends PlainTestCase {
      * (privateメソッドを以下のように定義して、テストメソッド内の呼び出しプログラムをコメントアウトしましょう):
      * <pre>
      * o replaceAtoB(): 一つのString引数、引数を "A" を "B" に置き換えらたStringを戻す 
-     * o replaceCtoB(): 一つのString引数、引数を "C" を "B" に置き換えらたStringを戻す 
+     * o replaceCtoB(): 一つのString引数、引数を "C" を "B" に置き換えらたStringを戻す
      * o addPrefix(): 二つのString引数、第一引数と ":" と第二引数を連結したものを戻す 
      * o isAvailableLogging(): 引数なし、privateのインスタンス変数 "availableLogging" (初期値:true) を戻す (それも作る)  
      * o showSea(): 一つのString引数、戻り値なし、引数をlog()で表示する
      * </pre>
      */
+    private boolean availableLogging = true;
+
     public void test_method_making() {
         // comment out after making these methods
-        //String replaced = replaceCtoB(replaceAtoB("ABC"));
-        //String sea = addPrefix("broadway", replaced);
-        //if (isAvailableLogging()) {
-        //    showSea(sea);
-        //}
+        String replaced = replaceCtoB(replaceAtoB("ABC"));
+        String sea = addPrefix("broadway", replaced);
+        if (isAvailableLogging()) {
+            showSea(sea);
+        }
     }
 
     // write methods here
+    private String replaceAtoB(String inputString){
+        String replaced = inputString.replace("A", "B");
+        return replaced;
+    }
+
+    private String replaceCtoB(String inputString){
+        String replaced = inputString.replace("C", "B");
+        return replaced;
+    }
+
+    private String addPrefix(String inputString1, String inputString2){
+        String concatenated = inputString1 + ":" + inputString2;
+        return concatenated;
+    }
+
+    private boolean isAvailableLogging(){
+        return availableLogging;
+    }
+
+    private void showSea(String inputString){
+        log(inputString);
+    }
 }
