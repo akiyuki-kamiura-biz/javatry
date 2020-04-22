@@ -86,6 +86,8 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_letsFix_ticketQuantityReduction() {
         Integer sea = doTest_class_ticket_wrongQuantity();
         log(sea); // should be max quantity, visual check here
+
+        // --quantity と支払われた金額の判定部分を入れ替えました
     }
 
     /**
