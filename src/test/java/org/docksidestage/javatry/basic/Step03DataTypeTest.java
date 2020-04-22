@@ -83,7 +83,10 @@ public class Step03DataTypeTest extends PlainTestCase {
         if (dstore > piari) {
             sea = 0;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 0
+        // (dstore > piari) = false になる理由は
+        // 演算時に暗黙的に int 型へのキャストが行われているから?
+        // dstore > (float)piari を試しましたが、 false になってしまいました
     }
 
     // ===================================================================================
@@ -93,7 +96,8 @@ public class Step03DataTypeTest extends PlainTestCase {
     public void test_datatype_object() {
         St3ImmutableStage stage = new St3ImmutableStage("hangar");
         String sea = stage.getStageName();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
+        // イミュータブルな型の値のゲットは可能
     }
 
     private static class St3ImmutableStage {
