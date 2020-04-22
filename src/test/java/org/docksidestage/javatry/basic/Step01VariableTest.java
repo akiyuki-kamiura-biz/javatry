@@ -139,7 +139,8 @@ public class Step01VariableTest extends PlainTestCase {
         String sea = "harbor";
         int land = 415;
         helpMethodArgumentImmutableMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => harbor
+        // help~関数内の sea は harbor416 だが、スコープ外
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
