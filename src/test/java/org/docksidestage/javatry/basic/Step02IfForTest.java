@@ -165,6 +165,7 @@ public class Step02IfForTest extends PlainTestCase {
         // write if-for here
         List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
         List<String> stageListContainA = new ArrayList<>();
+
         for (String stage : stageList) {
             if (stage.contains("a")){
                 stageListContainA.add(stage);
@@ -184,18 +185,23 @@ public class Step02IfForTest extends PlainTestCase {
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
     public void test_iffor_refactor_foreach_to_forEach() {
-        List<String> stageList = prepareStageList();
-        String sea = null;
-        for (String stage : stageList) {
-            if (stage.startsWith("br")) {
-                continue;
+        List<String> stageList = prepareStageList(); // broadway, dockside, hangar, magiclamp
+        String[] sea = {null};
+        boolean[] isEnd = {false};
+        stageList.forEach(stage -> {
+            if (stage.startsWith("br") || isEnd[0]) {
+                return;
             }
-            sea = stage;
+            sea[0] = stage;
             if (stage.contains("ga")) {
-                break;
+                isEnd[0] = true;
             }
-        }
+        });
         log(sea); // should be same as before-fix
+
+        // 外部の変数がfinal化されてしまう問題について、
+        // 参照型の変数を使用することで克服しました
+        // もう少し上手いやり方があるなら教えていただきたいです。
     }
 
     /**
@@ -203,13 +209,28 @@ public class Step02IfForTest extends PlainTestCase {
      * (if文for文についてあなたのオリジナルの質問形式のエクササイズを作ってみましょう)
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-     * your question here (ここにあなたの質問を):
+     * your question here (ここにあなたの質問を): どのような外部変数ならforEachの中で変更できるのかを調べよう
      * 
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
     public void test_iffor_yourExercise() {
         // write your code here
+        List<String> stageList = prepareStageList();
+
+        Integer[] intVar = {null};
+        char[] charVar = {0};
+        StringBuilder sb = new StringBuilder();
+
+        stageList.forEach(stage -> {
+            intVar[0] = 9;
+            charVar[0] = 0;
+            sb.append(stage);
+        });
+
+        log(sb);
+
+        // 上手いやり方がわからないので、教えていただけるとありがたいです...
     }
 
     // ===================================================================================
