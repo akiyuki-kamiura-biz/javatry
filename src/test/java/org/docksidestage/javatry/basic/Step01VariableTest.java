@@ -47,7 +47,7 @@ public class Step01VariableTest extends PlainTestCase {
         String piari = null;
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mystic8null:mai
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
