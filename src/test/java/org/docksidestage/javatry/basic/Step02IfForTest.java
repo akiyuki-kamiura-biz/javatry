@@ -163,6 +163,17 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> stageListContainA = new ArrayList<>();
+        for (String stage : stageList) {
+            if (stage.contains("ga")){
+                stageListContainA.add(stage);
+            }
+        }
+
+        for (String stage : stageListContainA){
+            log(stage);
+        }
     }
 
     // ===================================================================================
