@@ -79,6 +79,7 @@ public class Step04MethodTest extends PlainTestCase {
         }
         log(sea); // your answer? => 910
         // mutable な変数の変更は関数内でも反映される
+        // NOTE 補足すると.setStageNameは戻り値がなく、instanceのフィールドを更新しているため、mutableと言える winkichanwi
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
@@ -175,6 +176,7 @@ public class Step04MethodTest extends PlainTestCase {
         return replaced;
     }
 
+    // TODO inputString1とinputString2の名前をより理解やすい名前にしましょう winkichanwi
     private String addPrefix(String inputString1, String inputString2){
         String concatenated = inputString1 + ":" + inputString2;
         return concatenated;
