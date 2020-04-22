@@ -81,6 +81,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea.add(new BigDecimal(1));
         log(sea); // your answer? => 416
         // land.add() が返すのは add() される前の land の値？
+        // NOTE L80ではちゃんと反映されますが、L81の戻り値はどの変数にもアサインされていないため、結果てきにseaはL80の結果のままです winkichanwi
     }
 
     // ===================================================================================
@@ -181,6 +182,7 @@ public class Step01VariableTest extends PlainTestCase {
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
         ++land;
         String seaStr = sea.toString(); // is "harbor"
+        // NOTE ここでseaはローカルスコープになったので、test_variable_method_argument_variable_assignmentのseaには反映しませんね winkichanwi
         sea = new StringBuilder(seaStr).append(land);
     }
 
