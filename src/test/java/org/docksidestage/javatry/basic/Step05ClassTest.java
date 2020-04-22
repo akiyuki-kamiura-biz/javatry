@@ -99,6 +99,8 @@ public class Step05ClassTest extends PlainTestCase {
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // should be same as one-day price, visual check here
+
+        // handedMoney をプラスしていた部分を ONE_DAY_PRICE をプラスに変更しました
     }
 
     /**
