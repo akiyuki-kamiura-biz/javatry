@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.basic;
 
+import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.OneDayTicket;
 import org.docksidestage.bizfw.basic.buyticket.MultipleDaysTicket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
@@ -111,17 +112,16 @@ public class Step05ClassTest extends PlainTestCase {
      * (TwoDayPassport (金額は13200) も買うメソッドを作りましょう (戻り値でお釣りをちゃんと返すように))
      */
     public void test_class_letsFix_makeMethod_twoday() {
-        // buyTwoDayPassport の返り値を変更したため, コメントアウトしています
-
         // comment out after making the method
-//        TicketBooth booth = new TicketBooth();
-//        int money = 14000;
-//        int change = booth.buyTwoDayPassport(money);
-//        Integer sea = booth.getSalesProceeds() + change;
-//        log(sea); // should be same as money
+        TicketBooth booth = new TicketBooth();
+        int money = 14000;
+        TicketBuyResult tbr = booth.buyTwoDayPassport(money);
+        int change = tbr.getChange();
+        Integer sea = booth.getSalesProceeds() + change;
+        log(sea); // should be same as money
 
         // and show two-day passport quantity here
-//        log(booth.getTwoDayQuantity());
+        log(booth.getTwoDayQuantity());
 
         // twodaypassport の quantity を仮にMAX_QUANTITY と設定しました
         // ここでは、oneday と twoday の変数名などわかりにくくなっていることや冗長性を無視して、
@@ -150,11 +150,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_return_ticket() {
         // comment out after modifying the method
-//        TicketBooth booth = new TicketBooth();
-//        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-//        log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
+        TicketBooth booth = new TicketBooth();
+        TicketBuyResult tbr = booth.buyOneDayPassport(10000);
+        Ticket oneDayPassport = tbr.getTicket();
+        log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
 //        log(oneDayPassport.isAlreadyIn()); // should be false
-//        oneDayPassport.doInPark();
+        oneDayPassport.doInPark();
 //        log(oneDayPassport.isAlreadyIn()); // should be true
 
         // お釣りとチケットを戻すためにコメントアウトしました
@@ -166,12 +167,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_return_whole() {
         // comment out after modifying the method
-//        TicketBooth booth = new TicketBooth();
-//        int handedMoney = 20000;
-//        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
-//        Ticket twoDayPassport = twoDayPassportResult.getTicket();
-//        int change = twoDayPassportResult.getChange();
-//        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 20000;
+        TicketBuyResult twoDayPassportResult = booth.buyTwoDayPassport(handedMoney);
+        Ticket twoDayPassport = twoDayPassportResult.getTicket();
+        int change = twoDayPassportResult.getChange();
+        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
     }
 
     /**
@@ -185,6 +186,9 @@ public class Step05ClassTest extends PlainTestCase {
 //        TicketBuyResult oneDayPassportResult = booth.buyOneDayPassport(handedMoney);
 //        Ticket oneDayPassport = oneDayPassportResult.getTicket();
 //        log(oneDayPassport.getTicketType());
+
+        // DaysType を見分けるための ラベルを返すようなメソッドを実装するべきかわからなかったので
+        // 実装していません
     }
 
     // ===================================================================================
@@ -208,12 +212,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_useInterface() {
         // your confirmation code here
-        MultipleDaysTicket fourDaysTicket = new MultipleDaysTicket(20000, 4);
+        Ticket fourDaysTicket = new MultipleDaysTicket(20000, 4, "FourDay");
         for (int day = 0; day < 4; day++){
             fourDaysTicket.doInPark();
         }
 
-        MultipleDaysTicket fiveDaysTicket = new MultipleDaysTicket(20000, 4);
+        Ticket fiveDaysTicket = new MultipleDaysTicket(20000, 4, "FourDay");
         for (int day = 0; day < 6; day++){
             fourDaysTicket.doInPark();
         }
@@ -227,6 +231,13 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder() {
         // your confirmation code here
+        TicketBooth booth = new TicketBooth();
+        int handedMoney = 22400;
+        TicketBuyResult tbr = booth.buyFourDayPassport(handedMoney);
+        Ticket ticket = tbr.getTicket();
+        int change = tbr.getChange();
+
+        log(ticket.getDisplayPrice() + change);
     }
 
     /**
@@ -235,5 +246,8 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_yourRefactoring() {
         // write confirmation code here
+
+        // 正直、TicketBooth での buyOneDayTicket, buyTwoDayTicket, buyFourDayTicket のメソッド共通化が
+        // うまくないと感じています。うまくやる方法があったら教えていただきたいです。
     }
 }

@@ -21,13 +21,15 @@ public class MultipleDaysTicket implements Ticket {
     //                                                                         ===========
     private int displayPrice;
     private int remainingDays;
+    private String ticketLabel;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public MultipleDaysTicket(int displayPrice, int remainingDays) {
+    public MultipleDaysTicket(int displayPrice, int remainingDays, String ticketLabel) {
         this.displayPrice = displayPrice;
         this.remainingDays = remainingDays;
+        this.ticketLabel = ticketLabel;
     }
 
     // ===================================================================================
@@ -44,6 +46,8 @@ public class MultipleDaysTicket implements Ticket {
     //                                                                         Accessor
     //                                                                         ===========
     public int getDisplayPrice() {
-        return getDisplayPrice();
+        return displayPrice;
     }
+
+    public String getTicketLabel() { return ticketLabel; }
 }

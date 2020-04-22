@@ -21,12 +21,14 @@ public class OneDayTicket implements Ticket {
     //                                                                         ===========
     private int displayPrice;
     private boolean alreadyIn = false;
+    private String ticketLabel;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public OneDayTicket(int displayPrice) {
+    public OneDayTicket(int displayPrice, String ticketLabel) {
         this.displayPrice = displayPrice;
+        this.ticketLabel = ticketLabel;
     }
 
     // ===================================================================================
@@ -42,7 +44,7 @@ public class OneDayTicket implements Ticket {
     // ===================================================================================
     //                                                                         Accessor
     //                                                                         ===========
-    public int getDisplayPrice() {
-        return getDisplayPrice();
-    }
+    public int getDisplayPrice() { return displayPrice; }
+
+    public String getTicketLabel() { return ticketLabel; }
 }

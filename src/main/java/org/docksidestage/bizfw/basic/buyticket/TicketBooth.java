@@ -26,12 +26,18 @@ public class TicketBooth {
     private static final int MAX_QUANTITY = 10;
     private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
     private static final int TWO_DAY_PRICE = 13200;
+    private static final int FOUR_DAY_PRICE = 22400;
+
+    private static final String ONE_DAY_LABEL = "OneDay";
+    private static final String TWO_DAY_LABEL = "TwoDay";
+    private static final String FOUR_DAY_LABEL = "FourDay";
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     private int oneDayQuantity = MAX_QUANTITY;
     private int twoDayQuantity = MAX_QUANTITY;
+    private int fourDayQuantity = MAX_QUANTITY;
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -67,7 +73,7 @@ public class TicketBooth {
         judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
         --oneDayQuantity;
         int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
-        Ticket oneDayTicket = new OneDayTicket(ONE_DAY_PRICE);
+        Ticket oneDayTicket = new OneDayTicket(ONE_DAY_PRICE, ONE_DAY_LABEL);
         TicketBuyResult tbr = new TicketBuyResult(oneDayTicket, change);
         return tbr;
     }
@@ -77,9 +83,18 @@ public class TicketBooth {
         --twoDayQuantity;
 
         int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
-        Ticket twoDayTicket = new MultipleDaysTicket(TWO_DAY_PRICE, 2);
+        Ticket twoDayTicket = new MultipleDaysTicket(TWO_DAY_PRICE, 2, TWO_DAY_LABEL);
 
         TicketBuyResult tbr = new TicketBuyResult(twoDayTicket, change);
+        return tbr;
+    }
+
+    public TicketBuyResult buyFourDayPassport(int handedMoney){
+        judgePassportAvailable(handedMoney, FOUR_DAY_PRICE, fourDayQuantity);
+        --fourDayQuantity;
+        int change = calculateSalesAndChange(handedMoney, FOUR_DAY_PRICE);
+        Ticket fourDayTicket = new MultipleDaysTicket(FOUR_DAY_PRICE, 4, FOUR_DAY_LABEL);
+        TicketBuyResult tbr = new TicketBuyResult(fourDayTicket, change);
         return tbr;
     }
 
