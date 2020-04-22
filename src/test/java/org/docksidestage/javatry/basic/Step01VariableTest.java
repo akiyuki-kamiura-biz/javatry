@@ -118,7 +118,8 @@ public class Step01VariableTest extends PlainTestCase {
         instanceMagiclamp = "magician";
         helpInstanceVariableViaMethod(instanceMagiclamp);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => bigband|1|null|magician
+        // 関数の引数として同名の変数名を定義した場合、そのスコープは関数内のみ
     }
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
