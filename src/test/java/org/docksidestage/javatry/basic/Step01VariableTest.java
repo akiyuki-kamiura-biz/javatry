@@ -24,7 +24,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author akiyuki_kamiura
  */
 public class Step01VariableTest extends PlainTestCase {
 
@@ -48,6 +48,8 @@ public class Step01VariableTest extends PlainTestCase {
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
         log(sea); // your answer? => mystic8null:mai
+        // sea が String なので、全ての型は String 型で暗黙にキャストされる
+        // null は文字列として評価されると "null"
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -57,6 +59,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         land = land + "'s dreams";
         log(sea); // your answer? => oneman
+        // String は参照型ではないので、変数 land の値の変換は反映されない
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -66,6 +69,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land;
         land++;
         log(sea); // your answer? => 415
+        // int は参照型ではない
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -76,6 +80,7 @@ public class Step01VariableTest extends PlainTestCase {
         sea = land.add(new BigDecimal(1));
         sea.add(new BigDecimal(1));
         log(sea); // your answer? => 416
+        // land.add() が返すのは add() される前の land の値？
     }
 
     // ===================================================================================
@@ -89,7 +94,8 @@ public class Step01VariableTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
+        // 初期化は null で行われる
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
