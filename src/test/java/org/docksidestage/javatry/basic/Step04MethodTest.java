@@ -77,7 +77,8 @@ public class Step04MethodTest extends PlainTestCase {
         if (!land) {
             sea = sea + mutable.getStageName().length();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 910
+        // mutable な変数の変更は関数内でも反映される
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
@@ -109,14 +110,15 @@ public class Step04MethodTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_instanceVariable() {
         hasAnnualPassport = true;
-        int sea = inParkCount;
+        int sea = inParkCount; // 0
         offAnnualPassport(hasAnnualPassport);
         for (int i = 0; i < 100; i++) {
             goToPark();
         }
         ++sea;
         sea = inParkCount;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 0
+        // hasAnnualPassport は offAnnualPassport 内でローカルなスコープを持っていることが頭から抜けていました
     }
 
     private void offAnnualPassport(boolean hasAnnualPassport) {
