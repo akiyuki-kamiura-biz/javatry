@@ -174,7 +174,8 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentVariable(sea, land);
-        log(sea); // your answer? =>
+        log(sea); // your answer? => harbor
+        // sea は String型にキャストされた上で、変更が加えられているため、反映されない？
     }
 
     private void helpMethodArgumentVariable(StringBuilder sea, int land) {
