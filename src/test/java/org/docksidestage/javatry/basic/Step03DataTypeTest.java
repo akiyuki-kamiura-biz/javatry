@@ -56,6 +56,8 @@ public class Step03DataTypeTest extends PlainTestCase {
         }
         log(sea); // your answer? => 18.4
         // 各変数の挙動について少し迷いました
+        // NOTE そうですね、ここはエクスサイズとして混乱を起こしてあげているともありますし、
+        // 迷った場合はここではハンズオンだから別にコメントを入れて変数の状態を書いておいてもいいので winkichanwi
     }
 
     // ===================================================================================
@@ -87,6 +89,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         // (dstore > piari) = false になる理由は
         // 演算時に暗黙的に int 型へのキャストが行われているから?
         // dstore > (float)piari を試しましたが、 false になってしまいました
+        // NOTE まずは(float)piariを出力してみましょう、そしてキャストしないのままなぜfalseというと、比較できないから常にfalseです winkichanwi
     }
 
     // ===================================================================================
