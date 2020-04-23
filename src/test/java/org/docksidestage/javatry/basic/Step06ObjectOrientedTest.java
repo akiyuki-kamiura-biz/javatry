@@ -18,23 +18,15 @@ package org.docksidestage.javatry.basic;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.objanimal.Animal;
-import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
-import org.docksidestage.bizfw.basic.objanimal.Cat;
-import org.docksidestage.bizfw.basic.objanimal.Dog;
-import org.docksidestage.bizfw.basic.objanimal.Turtle;
-import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.*;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.Crawler;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
-
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
-
 import org.docksidestage.javatry.basic.st6.os.St6MacOs;
 import org.docksidestage.javatry.basic.st6.os.St6OldWindowsOs;
-import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
 import org.docksidestage.javatry.basic.st6.os.St6WindowsOs;
 import org.docksidestage.unit.PlainTestCase;
 
@@ -92,6 +84,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [do in park now!!!]
         //
         if (alreadyIn) {
+            // TODO kamiura こちらも修正してください by subaru (2020/04/23)
             throw new IllegalStateException("Already in park by this ticket: displayPrice=" + quantity);
         }
         alreadyIn = true;
@@ -144,10 +137,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // #fixme you if step05 has been finished, you can use this code by jflute (2019/06/15)
         // _/_/_/_/_/_/_/_/_/_/
-//        Ticket ticket = booth.buyOneDayPassport(10000);
+        //        Ticket ticket = booth.buyOneDayPassport(10000);
         TicketBuyResult tbr = booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
         Ticket ticket = tbr.getTicket();
-//        Ticket ticket = new Ticket(7400); // also here
+        //        Ticket ticket = new Ticket(7400); // also here
 
         // *buyOneDayPassport() has this process:
         //if (quantity <= 0) {
@@ -193,6 +186,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // 適切な関数名とメソッド名を用いることで、見る側に大きな処理の流れをまず見てから、その後細かい処理を考えさせることができると思います。
     // ただ、その分メソッドが正しく動いているかわからないところがデメリットでもあると思います。
     // 2. Step05 を実装していて、OneDayとTwoDayで処理を共通化できるところにもメリットがあると感じました。
+    // TODO [comment] Good! by subaru (2020/04/23)
 
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
         if (ticket.isAlreadyIn()) {
@@ -276,6 +270,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // 関数の引数、親クラスとして与えられた場合も、動作は同じ
         // 参照渡しになっていると思います。
+        // TODO [comment] いいですね、その通りです。 by subaru (2020/04/23)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -315,6 +310,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Animal クラスの soundLoudly() を見つけられていませんでした。
         // intelliJ で Shift+⌘+F でファイルを超えた検索機能を使おうと思います。
+        // TODO [comment] (もし知っていなければ)今回のように特定のメソッドがどこで override されているかどうか調べたい時はメソッドで command + option + b が便利です。 by subaru (2020/04/23)
+        // 今回でいうと Loudable インターフェースの soundLoudly メソッドで上のショートカットを実行すると soundLoudly の実装先一覧が表示されます。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -340,6 +337,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // NOTE teachers このようなクラスやインターフェースの関係を理解する場合、
         // ノートの上で木構造を作りながら理解していけば大丈夫なのですか？
+        // TODO [comment] java においてはそれで良いと思います。 by subaru (2020/04/23)
+        // 別に木構造が絶対と言うことではないけど、いい方法の一つということで理解して大丈夫だと思います。
+        // ただし多重継承が可能なプログラミング言語においては単純な木構造にはならなくなるので注意です（java は多重継承は不可です）。
+        // 少し話は脱線するけど、時間があれば多重継承の問題などこちらの記事わかりやすいのでおすすめです。
+        // https://ufcpp.net/study/csharp/oop/oo_multipleinheritance/
     }
 
     /**
@@ -365,6 +367,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // NOTE teachers クラスやインスタンスの継承元が複数ある場合は、
         // 宣言時のクラスをどれにするかで、
         // 使用できるメソッドが異なるという理解で大丈夫ですか？
+        // TODO [comment] そうだね。 by subaru (2020/04/23)
+        // ただしダウンキャストしてあげればそのキャストしたクラスに実装されているメソッドは使うことができます。
+        // 不適切なダウンキャストをするとエラーになるので注意は必要だけど。
     }
 
     // ===================================================================================
@@ -397,6 +402,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Crawler と HighJumper を思いつきましたが、
         // Turtle に implement させるために、runner 内に　Crawler を実装しました。
+        // TODO [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
         Crawler turtle = new Turtle();
         turtle.crawl();
 
@@ -476,7 +482,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         BarkedSound barkedSound = dog.bark();
         log(barkedSound.getBarkWord());
 
-    }    /**
+    }
+    /**
      * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
      * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
      */
