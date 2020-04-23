@@ -423,7 +423,6 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         int pageNumber = 6;
         log(seaMySql.buildPagingQuery(pageSize, pageNumber));
         log(seqPostgreSql.buildPagingQuery(pageSize, pageNumber));
-
     }
 
     /**
@@ -456,9 +455,28 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
-    }
 
-    /**
+        // TODO teachers レビューお願いします。
+
+        // delegation の意味を調べました。
+        // delegation (委譲) は処理を別クラスのメソッドに任せる場合に用いるものであり、
+        // 継承との違いはクラスの関係が分離されていること、インスタンス化しなければメソッドを使用することができないこと、だと理解しました。
+
+        // BarkingProcessの別ファイルを作成しました。
+
+        // BarkingProcess を共通化した場合に、downHitPoint() をその中に含める必要がありますが、
+        // cat クラスに特有の downHitPoint() があり、そこの共通化をどう行うかが課題だと思いました。
+        // HitPointクラスを作成し、Animalクラスに持たせた上で、Catクラス内でのみ damaged() のオーバライドを行いました。
+        // 次に、その実装の影響で、hitPoint の値が0になってしまった場合に投げるエラー分の文章が統一化されてしまいました。
+        // 今回は汚いと思いましたが、HitPoint クラスに barkWard の情報を持たせることにして解決しました。
+
+        // もう少しいい方法があれば教えていただきたいです。
+
+        Dog dog = new Dog();
+        BarkedSound barkedSound = dog.bark();
+        log(barkedSound.getBarkWord());
+
+    }    /**
      * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
      * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
      */

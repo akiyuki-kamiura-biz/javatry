@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+//import apple.laf.JRSUIConstants;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +34,13 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected int hitPoint;
+    protected HitPoint hitPoint;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Animal() {
-        hitPoint = getInitialHitPoint();
+        hitPoint = new HitPoint(getInitialHitPoint(), getBarkWord());
     }
 
     protected int getInitialHitPoint() {
@@ -50,39 +51,12 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        breatheIn();
-        prepareAbdominalMuscle();
-        String barkWord = getBarkWord();
-        BarkedSound barkedSound = doBark(barkWord);
+        BarkingProcess barkingProcess = new BarkingProcess(hitPoint, getBarkWord());
+        BarkedSound barkedSound = barkingProcess.bark();
         return barkedSound;
     }
 
-    protected void prepareAbdominalMuscle() {
-        logger.debug("...Using my abdominal muscle"); // dummy implementation
-        downHitPoint();
-    }
-
-    protected void breatheIn() {
-        logger.debug("...Breathing in"); // dummy implementation
-        downHitPoint();
-    }
-
     protected abstract String getBarkWord();
-
-    protected BarkedSound doBark(String barkWord) {
-        downHitPoint();
-        return new BarkedSound(barkWord);
-    }
-
-    // ===================================================================================
-    //                                                                           Hit Point
-    //                                                                           =========
-    protected void downHitPoint() {
-        --hitPoint;
-        if (hitPoint == 0) {
-            throw new IllegalStateException("I'm very tired, so I want to sleep" + getBarkWord());
-        }
-    }
 
     // ===================================================================================
     //                                                                               Loud
@@ -96,6 +70,6 @@ public abstract class Animal implements Loudable {
     //                                                                            Accessor
     //                                                                            ========
     public int getHitPoint() {
-        return hitPoint;
+        return hitPoint.getHitPoint();
     }
 }

@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+//import apple.laf.JRSUIConstants;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,10 +31,26 @@ public class Cat extends Animal implements FastRunner {
     //                                                                          ==========
     private static final Logger logger = LoggerFactory.getLogger(Cat.class);
 
+    protected class CatHitPoint extends HitPoint {
+        public CatHitPoint (int initialHitPoint, String barkWord){
+            super(initialHitPoint, barkWord);
+        }
+
+        @Override
+        public void damaged() {
+            super.damaged();
+            if (hitPoint % 2 == 0) {
+                super.damaged();
+            }
+        }
+    }
+
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Cat() {
+        super();
+        this.hitPoint = new CatHitPoint(getInitialHitPoint(), getBarkWord());
     }
 
     // ===================================================================================
@@ -51,16 +68,5 @@ public class Cat extends Animal implements FastRunner {
     public void run() {
         // dummy implementation
         logger.debug("...Running now");
-    }
-
-    // ===================================================================================
-    //                                                                           Hit Point
-    //                                                                           =========
-    @Override
-    protected void downHitPoint() {
-        super.downHitPoint();
-        if (hitPoint % 2 == 0) {
-            super.downHitPoint();
-        }
     }
 }
