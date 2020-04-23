@@ -254,14 +254,18 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_polymorphism_4th_toMethod() {
         Dog dog = new Dog();
         doAnimalSeaLand_for_4th(dog);
+        log(dog.getHitPoint());
     }
 
     private void doAnimalSeaLand_for_4th(Animal animal) {
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
+
+        // 関数の引数、親クラスとして与えられた場合も、動作は同じ
+        // 参照渡しになっていると思います。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
