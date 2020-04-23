@@ -24,18 +24,6 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final ZombieDiary zombieDiary = new ZombieDiary();
-
-    // ===================================================================================
-    //                                                                         Constructor
-    //                                                                         ===========
-    public Zombie() {
-    }
-
-    @Override
-    protected int getInitialHitPoint() {
-        return -1; // magic number for infinity hit point
-    }
 
     public static class ZombieDiary {
 
@@ -50,14 +38,45 @@ public class Zombie extends Animal {
         }
     }
 
+    protected static class ZombieBarkingProcess extends BarkingProcess {
+        private final ZombieDiary zombieDiary;
+
+        public ZombieBarkingProcess (int initialHitPoint, String barkWord, ZombieDiary zombieDiary){
+            super(initialHitPoint, barkWord);
+            this.zombieDiary = zombieDiary;
+        }
+
+        @Override
+        public void decrementHitPoint() {
+        }
+
+        @Override
+        protected void breatheIn(){
+            super.breatheIn();
+            zombieDiary.countBreatheIn();
+        }
+
+        public ZombieDiary getZombieDiary() {
+            return zombieDiary;
+        }
+    }
+
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
+    public Zombie() {
+//        super();
+        this.barkingProcess = new ZombieBarkingProcess(getInitialHitPoint(), getBarkWord(), new ZombieDiary());
+    }
+
+    @Override
+    protected int getInitialHitPoint() {
+        return -1; // magic number for infinity hit point
+    }
+
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
-//    @Override
-//    protected void breatheIn() {
-//        super.breatheIn();
-//        zombieDiary.countBreatheIn();
-//    }
 
     @Override
     protected String getBarkWord() {
@@ -65,17 +84,9 @@ public class Zombie extends Animal {
     }
 
     // ===================================================================================
-    //                                                                           Hit Point
-    //                                                                           =========
-//    @Override
-//    protected void downHitPoint() {
-//        // do nothing, infinity hit point
-//    }
-
-    // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
     public ZombieDiary getZombieDiary() {
-        return zombieDiary;
+        return barkingProcess.getZombieDiary();
     }
 }

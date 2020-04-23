@@ -34,13 +34,13 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected HitPoint hitPoint;
+    protected BarkingProcess barkingProcess;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
     public Animal() {
-        hitPoint = new HitPoint(getInitialHitPoint(), getBarkWord());
+        this.barkingProcess = new BarkingProcess(getInitialHitPoint(), getBarkWord());
     }
 
     protected int getInitialHitPoint() {
@@ -51,7 +51,6 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-        BarkingProcess barkingProcess = new BarkingProcess(hitPoint, getBarkWord());
         BarkedSound barkedSound = barkingProcess.bark();
         return barkedSound;
     }
@@ -70,6 +69,6 @@ public abstract class Animal implements Loudable {
     //                                                                            Accessor
     //                                                                            ========
     public int getHitPoint() {
-        return hitPoint.getHitPoint();
+        return barkingProcess.getHitPoint();
     }
 }

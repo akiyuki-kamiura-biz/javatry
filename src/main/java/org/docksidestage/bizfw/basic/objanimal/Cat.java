@@ -31,16 +31,16 @@ public class Cat extends Animal implements FastRunner {
     //                                                                          ==========
     private static final Logger logger = LoggerFactory.getLogger(Cat.class);
 
-    protected class CatHitPoint extends HitPoint {
-        public CatHitPoint (int initialHitPoint, String barkWord){
+    protected class CatBarkingProcess extends BarkingProcess {
+        public CatBarkingProcess (int initialHitPoint, String barkWord){
             super(initialHitPoint, barkWord);
         }
 
         @Override
-        public void damaged() {
-            super.damaged();
+        public void decrementHitPoint() {
+            super.decrementHitPoint();
             if (hitPoint % 2 == 0) {
-                super.damaged();
+                super.decrementHitPoint();
             }
         }
     }
@@ -50,7 +50,7 @@ public class Cat extends Animal implements FastRunner {
     //                                                                         ===========
     public Cat() {
         super();
-        this.hitPoint = new CatHitPoint(getInitialHitPoint(), getBarkWord());
+        this.barkingProcess = new CatBarkingProcess(getInitialHitPoint(), getBarkWord());
     }
 
     // ===================================================================================

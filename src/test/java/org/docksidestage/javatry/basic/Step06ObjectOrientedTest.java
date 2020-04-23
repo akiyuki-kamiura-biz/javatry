@@ -482,5 +482,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_zoo() {
         // do nothing here
+
+        // HitPoint を 作る必要はなく、BarkingProcess のオーバーライドを行うことによって、
+        // Cat 特有のプロセスを記述できることに気づいたので書き直しました。
+        // 前の問題が動くことも確認しました。
+
+        // その上で、zombie にも共通化を行おうと思った場合に、
+        // ZombieDiary などという特有の処理が共通化を妨げているため、適切でないと思いました。
     }
 }

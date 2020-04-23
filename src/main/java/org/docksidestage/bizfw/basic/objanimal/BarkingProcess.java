@@ -15,14 +15,14 @@ public class BarkingProcess {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private HitPoint hitPoint;
+    protected int hitPoint;
     private String barkWord;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    BarkingProcess(HitPoint hitPoint, String barkWord) {
-        this.hitPoint = hitPoint;
+    BarkingProcess(int currentHitPoint, String barkWord) {
+        this.hitPoint = currentHitPoint;
         this.barkWord = barkWord;
     }
 
@@ -38,16 +38,34 @@ public class BarkingProcess {
 
     private void prepareAbdominalMuscle() {
         logger.debug("...Using my abdominal muscle"); // dummy implementation
-        hitPoint.damaged();
+        decrementHitPoint();
     }
 
-    private void breatheIn() {
+    protected void breatheIn() {
         logger.debug("...Breathing in"); // dummy implementation
-        hitPoint.damaged();
+        decrementHitPoint();
     }
 
     private BarkedSound doBark(String barkWord) {
-        hitPoint.damaged();
+        decrementHitPoint();
         return new BarkedSound(barkWord);
+    }
+
+    public void decrementHitPoint() {
+        --hitPoint;
+        if (hitPoint == 0) {
+            throw new IllegalStateException("I'm very tired, so I want to sleep" + barkWord);
+        }
+    }
+
+    // ===================================================================================
+    //                                                                               Accessor
+    //                                                                              ======
+    public int getHitPoint(){
+        return hitPoint;
+    }
+
+    public Zombie.ZombieDiary getZombieDiary() {
+        return null;
     }
 }
