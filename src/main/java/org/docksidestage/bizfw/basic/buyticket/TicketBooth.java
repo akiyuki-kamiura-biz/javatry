@@ -15,6 +15,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO kamiura add your author tag to javadoc please by jflute (2020/04/23)
 /**
  * @author jflute
  */
@@ -49,7 +50,9 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-
+    // TODO kamiura これらのメソッドは、クラス内だけでの再利用ですか？であれば、privateの方がいいかなと by jflute (2020/04/23)
+    // また、そういった再利用メソッド(ちょっとしたヘルパーメソッド)は、それらを使うpublicメソッドよりも下に宣言することが多いです。
+    // (人にも寄るけど、新卒研修ではそのようにお願いします。でも良い再利用ですね^^)
     public void judgePassportAvailable(int handedMoney, int ticketPrice, int ticketQuantity){
         if (ticketQuantity <= 0) {
             throw new TicketSoldOutException("Sold out");
