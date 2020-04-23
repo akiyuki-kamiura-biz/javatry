@@ -338,6 +338,23 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_interface_runnerImpl() {
         // your confirmation code here
+        Animal seaAnimal = new Dog();
+        boolean sea = seaAnimal instanceof FastRunner;
+        log(sea);
+
+        FastRunner seaFastRunner = new Dog();
+        seaFastRunner.run();
+
+        Dog seaDog = new Dog();
+        log(seaDog instanceof FastRunner);
+        log(seaDog instanceof Animal);
+        seaDog.run();
+        BarkedSound barkedSound = seaDog.bark();
+        log(barkedSound.getBarkWord());
+
+        // NOTE teachers クラスやインスタンスの継承元が複数ある場合は、
+        // 宣言時のクラスをどれにするかで、
+        // 使用できるメソッドが異なるという理解で大丈夫ですか？
     }
 
     // ===================================================================================
