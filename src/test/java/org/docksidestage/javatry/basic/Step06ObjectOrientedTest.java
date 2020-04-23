@@ -17,6 +17,7 @@ package org.docksidestage.javatry.basic;
 
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
@@ -133,9 +134,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // #fixme you if step05 has been finished, you can use this code by jflute (2019/06/15)
         // _/_/_/_/_/_/_/_/_/_/
-        //Ticket ticket = booth.buyOneDayPassport(10000);
-        booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
-//        Ticket ticket = new Ticket(7400, Ticket.TicketType.OneDay); // also here
+//        Ticket ticket = booth.buyOneDayPassport(10000);
+        TicketBuyResult tbr = booth.buyOneDayPassport(10000); // as temporary, remove if you finished steo05
+        Ticket ticket = tbr.getTicket();
+//        Ticket ticket = new Ticket(7400); // also here
 
         // *buyOneDayPassport() has this process:
         //if (quantity <= 0) {
@@ -158,7 +160,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [do in park now!!!]
         //
-//        ticket.doInPark();
+        ticket.doInPark();
 
         // *doInPark() has this process:
         //if (alreadyIn) {
@@ -169,23 +171,33 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [final process]
         //
-//        saveBuyingHistory(booth, ticket);
+        saveBuyingHistory(booth, ticket);
     }
 
+    // 0. オブジェクトとは何か？ということに関して、「変数と処理をまとめたもの」という定義のされ方をよく見ると思います。
+    // より有機的には、自分が社会で生きている中で、その内部での処理を知らなくても、
+    // 「こう働きかけたら、こういう結果が得られる」と知っているだけで便利に使用できるものが存在して、
+    // そのようなものを使っている感覚で使用できるもの、ということだと思いました。
+
+    // 1. オブジェクトを適切に使うことによって、見る側の負担が一気に改善されているというのが第一に感じました。
+    // 適切な関数名とメソッド名を用いることで、見る側に大きな処理の流れをまず見てから、その後細かい処理を考えさせることができると思います。
+    // ただ、その分メソッドが正しく動いているかわからないところがデメリットでもあると思います。
+    // 2. Step05 を実装していて、OneDayとTwoDayで処理を共通化できるところにもメリットがあると感じました。
+
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
-//        if (ticket.isAlreadyIn()) {
-//            // only logging here (normally e.g. DB insert)
-//            doShowTicketBooth(booth);
-//            doShowYourTicket(ticket);
-//        }
+        if (ticket.isAlreadyIn()) {
+            // only logging here (normally e.g. DB insert)
+            doShowTicketBooth(booth);
+            doShowYourTicket(ticket);
+        }
     }
 
     private void doShowTicketBooth(TicketBooth booth) {
-//        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getOneDayQuantity(), booth.getSalesProceeds());
+        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getOneDayQuantity(), booth.getSalesProceeds());
     }
 
     private void doShowYourTicket(Ticket ticket) {
-//        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
+        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
     }
 
     // ===================================================================================
