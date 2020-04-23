@@ -22,10 +22,13 @@ import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Turtle;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
+import org.docksidestage.bizfw.basic.objanimal.runner.Crawler;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -328,7 +331,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         boolean land = landAnimal instanceof FastRunner;
         log(land); // your answer? => false
 
-        // このようなクラスやインターフェースの関係を理解する場合、
+        // NOTE teachers このようなクラスやインターフェースの関係を理解する場合、
         // ノートの上で木構造を作りながら理解していけば大丈夫なのですか？
     }
 
@@ -366,6 +369,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
         // your confirmation code here
+
+        // コンクリートクラスの意味を、（Animalクラスのような）抽象クラスに対して、
+        // 直接インスタンス化するレベルのクラスであると解釈しました。
+        // よって、Turtle クラスを実装しました。
+
+        Turtle turtle = new Turtle();
+        log(turtle instanceof FastRunner);
+        log(turtle instanceof Animal);
+        BarkedSound barkedSound = turtle.bark();
+        log(barkedSound.getBarkWord());
     }
 
     /**
@@ -374,6 +387,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_makeInterface() {
         // your confirmation code here
+
+        // Crawler と HighJumper を思いつきましたが、
+        // Turtle に implement させるために、runner 内に　Crawler を実装しました。
+        Crawler turtle = new Turtle();
+        turtle.crawl();
+
     }
 
     // ===================================================================================
