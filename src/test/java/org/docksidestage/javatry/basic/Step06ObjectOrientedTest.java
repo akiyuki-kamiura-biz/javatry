@@ -32,6 +32,10 @@ import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 
+import org.docksidestage.javatry.basic.st6.os.St6MacOs;
+import org.docksidestage.javatry.basic.st6.os.St6OldWindowsOs;
+import org.docksidestage.javatry.basic.st6.os.St6OperationSystem;
+import org.docksidestage.javatry.basic.st6.os.St6WindowsOs;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -428,6 +432,19 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
         // your confirmation code here
+
+        String loginId = "akiyuki";
+        String relativePath = "aaa/bbb/ccc";
+        // relative path : home からみた相対パスであり、　../../aaa みたいなものではない、ということはわかりました。
+
+        St6MacOs macOs = new St6MacOs(loginId);
+        log(macOs.buildUserResourcePath(relativePath));
+
+        St6WindowsOs windowsOs = new St6WindowsOs(loginId);
+        log(windowsOs.buildUserResourcePath(relativePath));
+
+        St6OldWindowsOs oldWindowsOs = new St6OldWindowsOs(loginId);
+        log(oldWindowsOs.buildUserResourcePath(relativePath));
     }
 
     // ===================================================================================

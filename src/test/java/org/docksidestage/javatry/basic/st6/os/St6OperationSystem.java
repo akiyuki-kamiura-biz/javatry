@@ -30,7 +30,7 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final String loginId;
+    protected final String loginId;
     private String osType;
 
     // ===================================================================================
@@ -38,7 +38,10 @@ public class St6OperationSystem {
     //                                                                         ===========
     public St6OperationSystem(String loginId) {
         this.loginId = loginId;
+        this.osType = getOsType();
     }
+
+    protected String getOsType(){ return "unknown"; }; // TODO　unknown 設定だとわかりにくい可能性あり
 
     // ===================================================================================
     //                                                                      User Directory
@@ -51,26 +54,10 @@ public class St6OperationSystem {
     }
 
     protected String getFileSeparator() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/";
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
+        throw new IllegalStateException("Unknown osType: " + osType);
     }
 
     protected String getUserDirectory() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Documents and Settigs/" + loginId;
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
+        throw new IllegalStateException("Unknown osType: " + osType);
     }
 }
