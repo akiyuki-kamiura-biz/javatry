@@ -15,6 +15,7 @@
  */
 package org.docksidestage.javatry.basic;
 
+import java.io.File;
 import org.docksidestage.bizfw.basic.supercar.SupercarClient;
 import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
 import org.docksidestage.unit.PlainTestCase;
@@ -94,6 +95,14 @@ public class Step07ExceptionTest extends PlainTestCase {
      * (new java.io.File(".") の canonical path を取得してログに表示、I/Oエラーはメッセージとスタックトレースを代わりに)
      */
     public void test_exception_checkedException_basic() {
+        File file = new File(".");
+
+        try {
+            log(file.getCanonicalPath());
+        } catch (java.io.IOException e) {
+            log(e.getMessage());
+            log(e.getStackTrace());
+        }
     }
 
     // ===================================================================================
