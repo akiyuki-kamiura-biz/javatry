@@ -297,11 +297,14 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //                                                              ======================
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_dispatch() {
-        Loudable loudable = new Zombie();
+        Loudable loudable = new Zombie(); // インターフェースの継承?
         String sea = loudable.soundLoudly();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => null
         String land = ((Zombie) loudable).bark().getBarkWord();
-        log(land); // your answer? => 
+        log(land); // your answer? => uooo
+
+        // Animal クラスの soundLoudly() を見つけられていませんでした。
+        // intelliJ で Shift+⌘+F でファイルを超えた検索機能を使おうと思います。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
