@@ -198,7 +198,7 @@ public class Step02IfForTest extends PlainTestCase {
                 isEnd[0] = true;
             }
         });
-        // TODO kamiura 一応、自分の Eclipse 上だと、このような警告が出ています by jflute (2020/04/22)
+        // kamiura 一応、自分の Eclipse 上だと、このような警告が出ています by jflute (2020/04/22)
         // Type String[] of the last argument to method log(Object...) doesn't exactly match the vararg parameter type.
         // Cast to Object[] to confirm the non-varargs invocation,
         // or pass individual arguments of type Object for a varargs invocation
@@ -211,13 +211,16 @@ public class Step02IfForTest extends PlainTestCase {
         // 参照型の変数を使用することで克服しました
         // もう少し上手いやり方があるなら教えていただきたいです。
         //
-        // TODO kamiura すごい回避の仕方。でもこれしかないですね by jflute (2020/04/22)
+        // kamiura すごい回避の仕方。でもこれしかないですね by jflute (2020/04/22)
         // Javaは安全のためにコールバック内で利用する変数は自然とfinalにしています。
         // (コールバックは、厳密にはいつどういうタイミングで実行されるかわからない、というのもあって)
         // なので、こういうことをやりたくなったら、isEndみたいに配列とかのオブジェクトにします。
         //
         // そもそも、このように外側の変数を書き換える必要があるようなループの場合は、forEach()メソッドは向いていないとも言えます。
         // 一方で、forEach()メソッドは、「外側の変数を間違えて書き換えてしまう危険性が少ないやり方」と言えます。適材適所ですね。
+
+        // NOTE kamiura ご教授ありがとうございます。　上の件については、警告を見逃さないようにします。
+        // また、forEach() の使い所は「外部の変数を書き換えてしまう恐れのある場合」に限って行こうと思いました。
     }
 
     /**

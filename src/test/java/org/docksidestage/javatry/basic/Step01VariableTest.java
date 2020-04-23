@@ -230,7 +230,8 @@ public class Step01VariableTest extends PlainTestCase {
      * </pre>
      */
     private boolean boolVal;
-    // TODO kamiura charValで、unusedの警告が出ていますね。。。 by jflute (2020/04/22)
+    // kamiura charValで、unusedの警告が出ていますね。。。 by jflute (2020/04/22)
+    // charVal についての警告は自分の環境 (intelliJ) では確認できませんでしたが、修正しました！
     private char charVal;
     private byte byteVal;
     private short shortVal;
@@ -241,7 +242,7 @@ public class Step01VariableTest extends PlainTestCase {
 
     public void test_variable_yourExercise() {
         // write your code here
-        String output = boolVal + "|" + byteVal + "|" + shortVal + "|" + intVal + "|" + longVal + "|" + floatVal + "|" + doubleVal;
+        String output = boolVal + "|" + charVal + "|" + byteVal + "|" + shortVal + "|" + intVal + "|" + longVal + "|" + floatVal + "|" + doubleVal;
         log(output);
     }
 }

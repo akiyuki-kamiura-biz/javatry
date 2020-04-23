@@ -214,7 +214,7 @@ public class Step05ClassTest extends PlainTestCase {
             fourDaysTicket.doInPark();
         }
 
-        Ticket fiveDaysTicket = new MultipleDaysTicket(20000, 4, "FourDay");
+        Ticket fiveDaysTicket = new MultipleDaysTicket(20000, 5, "FiveDay");
         for (int day = 0; day < 6; day++){
             fourDaysTicket.doInPark();
         }

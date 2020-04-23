@@ -176,9 +176,10 @@ public class Step04MethodTest extends PlainTestCase {
         return replaced;
     }
 
-    // TODO inputString1とinputString2の名前をより理解やすい名前にしましょう winkichanwi
-    private String addPrefix(String inputString1, String inputString2){
-        String concatenated = inputString1 + ":" + inputString2;
+    // inputString1とinputString2の名前をより理解やすい名前にしましょう winkichanwi
+    // kamiura : inputString1 -> prefix (接頭辞), inputString2 -> text に変更しました
+    private String addPrefix(String prefix, String text){
+        String concatenated = prefix + ":" + text;
         return concatenated;
     }
 
