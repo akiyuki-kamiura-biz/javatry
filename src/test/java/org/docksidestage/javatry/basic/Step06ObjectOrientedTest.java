@@ -29,6 +29,9 @@ import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.Crawler;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
+
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -404,6 +407,19 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
+
+        // St6Rdb という抽象クラスを作成して、
+        // St6MySql, St6PostgreSql の抽象クラスとして実装しました。
+        // 中身は共通化する部分がそれほどなかったので、
+        // 今回は St6MySql の内容で共通化しました。
+
+        St6MySql seaMySql = new St6MySql();
+        St6PostgreSql seqPostgreSql = new St6PostgreSql();
+        int pageSize = 20;
+        int pageNumber = 6;
+        log(seaMySql.buildPagingQuery(pageSize, pageNumber));
+        log(seqPostgreSql.buildPagingQuery(pageSize, pageNumber));
+
     }
 
     /**
