@@ -209,11 +209,14 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_polymorphism_1st_concreteOnly() {
         Dog dog = new Dog();
-        BarkedSound sound = dog.bark();
+        BarkedSound sound = dog.bark(); // キャストされる？
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => wan
         int land = dog.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 7
+
+        // Animal クラスの　breathedIn(), prepareAbdominalMuscle(), doBark() で
+        // hitpoint がそれぞれ減っていることは確認できました。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
