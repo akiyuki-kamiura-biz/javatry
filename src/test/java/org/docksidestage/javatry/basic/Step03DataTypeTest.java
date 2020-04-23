@@ -89,7 +89,7 @@ public class Step03DataTypeTest extends PlainTestCase {
         // (dstore > piari) = false になる理由は
         // 演算時に暗黙的に int 型へのキャストが行われているから?
         // dstore > (float)piari を試しましたが、 false になってしまいました
-        // NOTE まずは(float)piariを出力してみましょう、そしてキャストしないのままなぜfalseというと、比較できないから常にfalseです winkichanwi
+        // NOTE done まずは(float)piariを出力してみましょう、そしてキャストしないのままなぜfalseというと、比較できないから常にfalseです winkichanwi
 
         // NOTE kamiura dstore の値の浮動小数点桁が丸め込まれていることがわかりました
         // float の仮数部は23ビットであり、今回の場合、丸め誤差が発生しているということですか？

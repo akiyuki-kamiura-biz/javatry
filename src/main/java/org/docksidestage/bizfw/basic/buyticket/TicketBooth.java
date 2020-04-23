@@ -15,9 +15,10 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO kamiura add your author tag to javadoc please by jflute (2020/04/23)
+// TODO done kamiura add your author tag to javadoc please by jflute (2020/04/23)
 /**
- * @author jflute
+ * @author jflute　
+ * @author akiyuki_kamiura
  */
 public class TicketBooth {
 
@@ -50,33 +51,17 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    // TODO kamiura これらのメソッドは、クラス内だけでの再利用ですか？であれば、privateの方がいいかなと by jflute (2020/04/23)
+    // TODO done kamiura これらのメソッドは、クラス内だけでの再利用ですか？であれば、privateの方がいいかなと by jflute (2020/04/23)
     // また、そういった再利用メソッド(ちょっとしたヘルパーメソッド)は、それらを使うpublicメソッドよりも下に宣言することが多いです。
     // (人にも寄るけど、新卒研修ではそのようにお願いします。でも良い再利用ですね^^)
-    public void judgePassportAvailable(int handedMoney, int ticketPrice, int ticketQuantity){
-        if (ticketQuantity <= 0) {
-            throw new TicketSoldOutException("Sold out");
-        }
-        if (handedMoney < ticketPrice) {
-            throw new TicketShortMoneyException("Short money: " + handedMoney);
-        }
-    }
-
-    public int calculateSalesAndChange(int handedMoney, int ticketPrice) {
-        if (salesProceeds != null) {
-            salesProceeds = salesProceeds + ticketPrice;
-        } else {
-            salesProceeds = ticketPrice;
-        }
-
-        return handedMoney - ticketPrice;
-    }
 
     public TicketBuyResult buyOneDayPassport(int handedMoney) {
         judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
         --oneDayQuantity;
+
         int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
         Ticket oneDayTicket = new OneDayTicket(ONE_DAY_PRICE, ONE_DAY_LABEL);
+
         TicketBuyResult tbr = new TicketBuyResult(oneDayTicket, change);
         return tbr;
     }
@@ -99,6 +84,28 @@ public class TicketBooth {
         Ticket fourDayTicket = new MultipleDaysTicket(FOUR_DAY_PRICE, 4, FOUR_DAY_LABEL);
         TicketBuyResult tbr = new TicketBuyResult(fourDayTicket, change);
         return tbr;
+    }
+
+    // TODO teachers ヘルパーメソッドをこの位置に移動しました！
+    // 個人的には、helper メソッドは、Attiribute, Constructor, Accessor のように、
+    // 大枠で区切られていた方がわかりやすいと思ったのですが、これに関してはどう思われますか？
+    private void judgePassportAvailable(int handedMoney, int ticketPrice, int ticketQuantity){
+        if (ticketQuantity <= 0) {
+            throw new TicketSoldOutException("Sold out");
+        }
+        if (handedMoney < ticketPrice) {
+            throw new TicketShortMoneyException("Short money: " + handedMoney);
+        }
+    }
+
+    private int calculateSalesAndChange(int handedMoney, int ticketPrice) {
+        if (salesProceeds != null) {
+            salesProceeds = salesProceeds + ticketPrice;
+        } else {
+            salesProceeds = ticketPrice;
+        }
+
+        return handedMoney - ticketPrice;
     }
 
     public static class TicketSoldOutException extends RuntimeException {

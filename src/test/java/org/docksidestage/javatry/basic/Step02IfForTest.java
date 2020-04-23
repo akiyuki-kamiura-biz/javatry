@@ -198,7 +198,7 @@ public class Step02IfForTest extends PlainTestCase {
                 isEnd[0] = true;
             }
         });
-        // kamiura 一応、自分の Eclipse 上だと、このような警告が出ています by jflute (2020/04/22)
+        // TODO done kamiura 一応、自分の Eclipse 上だと、このような警告が出ています by jflute (2020/04/22)
         // Type String[] of the last argument to method log(Object...) doesn't exactly match the vararg parameter type.
         // Cast to Object[] to confirm the non-varargs invocation,
         // or pass individual arguments of type Object for a varargs invocation
@@ -211,7 +211,7 @@ public class Step02IfForTest extends PlainTestCase {
         // 参照型の変数を使用することで克服しました
         // もう少し上手いやり方があるなら教えていただきたいです。
         //
-        // kamiura すごい回避の仕方。でもこれしかないですね by jflute (2020/04/22)
+        // TODO done kamiura すごい回避の仕方。でもこれしかないですね by jflute (2020/04/22)
         // Javaは安全のためにコールバック内で利用する変数は自然とfinalにしています。
         // (コールバックは、厳密にはいつどういうタイミングで実行されるかわからない、というのもあって)
         // なので、こういうことをやりたくなったら、isEndみたいに配列とかのオブジェクトにします。
@@ -238,19 +238,18 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
 
         Integer[] intVar = { null };
-        char[] charVar = { 0 };
+        char[] charVar = { '0' };
         StringBuilder sb = new StringBuilder();
 
         stageList.forEach(stage -> {
             intVar[0] = 9;
-            // NOTE charには '0'でアサインできるが数字はアサインできない(primitive typeだから)ので、反映してくれないね winkichanwi
-            charVar[0] = 0;
+            // NOTE done charには '0'でアサインできるが数字はアサインできない(primitive typeだから)ので、反映してくれないね winkichanwi
+            charVar[0] = '0';
             sb.append(stage);
         });
 
         log(sb);
 
-        // 上手いやり方がわからないので、教えていただけるとありがたいです...
     }
 
     // ===================================================================================

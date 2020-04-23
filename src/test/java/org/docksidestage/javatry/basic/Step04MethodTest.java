@@ -79,7 +79,7 @@ public class Step04MethodTest extends PlainTestCase {
         }
         log(sea); // your answer? => 910
         // mutable な変数の変更は関数内でも反映される
-        // NOTE 補足すると.setStageNameは戻り値がなく、instanceのフィールドを更新しているため、mutableと言える winkichanwi
+        // NOTE done 補足すると.setStageNameは戻り値がなく、instanceのフィールドを更新しているため、mutableと言える winkichanwi
     }
 
     private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
