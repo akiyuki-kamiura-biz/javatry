@@ -25,7 +25,7 @@ public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
         SupercarManufacturer manufacturer = createSupercarManufacturer();
-        if (clientRequirement.contains("steering wheel is like sea")) {
+        if (clientRequirement.contains("steering wheel is like sea")) { // true
             return manufacturer.makeSupercar("piari");
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
             return manufacturer.makeSupercar("land");
