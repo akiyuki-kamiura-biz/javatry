@@ -273,9 +273,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Animal animal = new Cat();
         BarkedSound sound = animal.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => nya-
         int land = animal.getHitPoint();
-        log(land); // your answer? => 
+        log(land); // your answer? => 10 - (1 + 2 + 2) = 5
+
+        // 関数のオーバーライドはわかりやすかったです。
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
