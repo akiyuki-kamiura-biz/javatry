@@ -34,6 +34,9 @@ public class Step21WordPoolTest extends PlainTestCase {
         assertEquals("荼", result.get(2).getWord());
         assertEquals("日本語", result.get(3).getLanguage().name);
         assertEquals("昴", result.get(3).getWord());
+
+        // assertEquals は全て正常に通過
+        // 日本語 => 日本 と変更して試したらエラーを吐く
     }
 
     public void test_find() {
