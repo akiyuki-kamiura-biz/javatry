@@ -38,7 +38,7 @@ public class WordPool {
     }
 
     public Word find(Long id) {
-        return wordMap.remove(id);
+        return wordMap.get(id);
     }
 
     public Word update(Long id, Word word) {
