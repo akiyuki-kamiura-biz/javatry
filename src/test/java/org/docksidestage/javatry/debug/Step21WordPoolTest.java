@@ -67,9 +67,12 @@ public class Step21WordPoolTest extends PlainTestCase {
         for (int i = 0; i < words.size(); i++) {
             // act
             Long actual = pool.findId(words.get(i));
+            log(actual.intValue()); // エラーが起きている箇所の特定
 
             // assert
             assertEquals(i + 1, actual.intValue());
+
+            // pool.findId("昂") がエラーを吐いていることがわかった
         }
 
     }
