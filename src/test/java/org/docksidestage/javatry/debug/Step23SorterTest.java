@@ -60,6 +60,7 @@ public class Step23SorterTest extends PlainTestCase {
 
         // assert
         for (int i = 0; i < result.size(); i++) {
+            log(expected.get(i).getWord());
             Assert.assertEquals(expected.get(i).getLanguage().name, result.get(i).getLanguage().name);
             Assert.assertEquals(expected.get(i).getWord(), result.get(i).getWord());
         }

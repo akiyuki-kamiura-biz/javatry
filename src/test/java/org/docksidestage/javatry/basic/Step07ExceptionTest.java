@@ -174,8 +174,13 @@ public class Step07ExceptionTest extends PlainTestCase {
             // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
             // What happens? Write situation and cause here. (何が起きた？状況と原因をここに書いてみましょう)
             // - - - - - - - - - -
-            //
-            //
+            // CarClient が buySupercar
+            // SupercarDealer が SupercarCatalog から選んで、SupercarManufacturer に車を発注
+            // SupercarManufacturer が SupercarSteeringWheelManufacturer にタイヤを発注
+            // SupercarSteeringWheelManufacturer が SupercarSteeringWheelComponentDB よりタイヤ必要な部品のスペックを指定して
+            // SpecialScrewManufacturer に発注 [specText = "\\(^_^)/"]
+            // SpecialScrewManufacturer は　specText = "\\(^_^)/" の条件ではネジを作れないと
+            // SpecialScrewCannotMakeBySpecException (RuntimeException を継承したクラス) を吐いた
             //
             // _/_/_/_/_/_/_/_/_/_/
         }

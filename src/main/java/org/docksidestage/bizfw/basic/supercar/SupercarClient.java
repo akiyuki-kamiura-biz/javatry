@@ -30,7 +30,7 @@ public class SupercarClient {
 
     public void buySupercar() {
         SupercarDealer dealer = createDealer();                    // new SuperCarDealer()
-        String clientRequirement = "steering wheel is like sea";   //
+        String clientRequirement = "steering wheel is like sea";
         Supercar orderedCustomCar = dealer.orderSupercar(clientRequirement);
         myCarList.add(orderedCustomCar);
     }

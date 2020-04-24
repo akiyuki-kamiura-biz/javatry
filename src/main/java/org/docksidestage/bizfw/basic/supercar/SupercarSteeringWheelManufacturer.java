@@ -32,7 +32,7 @@ public class SupercarSteeringWheelManufacturer {
     }
 
     public SteeringWheel makeSteeringWheel(Integer steeringWheelId) { // 3
-        String specText = componentDB.findClincherSpecText(steeringWheelId);
+        String specText = componentDB.findClincherSpecText(steeringWheelId); // specText = "\\(^_^)/"
         ScrewSpec screwSpec = new ScrewSpec(specText);
 
         SpecialScrewManufacturer manufacturer = createSpecialScrewManufacturer();

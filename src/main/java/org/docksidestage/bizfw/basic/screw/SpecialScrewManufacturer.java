@@ -32,7 +32,7 @@ public class SpecialScrewManufacturer {
 
     public static class ScrewSpec {
 
-        private final String specText;
+        private final String specText; // "\\(^_^)/"
 
         public ScrewSpec(String specText) {
             this.specText = specText;
