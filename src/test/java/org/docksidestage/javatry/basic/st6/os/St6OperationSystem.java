@@ -18,19 +18,12 @@ package org.docksidestage.javatry.basic.st6.os;
 /**
  * @author jflute
  */
-public class St6OperationSystem {
-
-    // ===================================================================================
-    //                                                                          Definition
-    //                                                                          ==========
-    private static final String OS_TYPE_MAC = "Mac";
-    private static final String OS_TYPE_WINDOWS = "Windows";
-    private static final String OS_TYPE_OLD_WINDOWS = "OldWindows";
+abstract class St6OperationSystem {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final String loginId;
+    protected final String loginId;
     private String osType;
 
     // ===================================================================================
@@ -38,6 +31,11 @@ public class St6OperationSystem {
     //                                                                         ===========
     public St6OperationSystem(String loginId) {
         this.loginId = loginId;
+        this.osType = getOsType();
+    }
+
+    protected String getOsType() {
+        return "unknown";
     }
 
     // ===================================================================================
@@ -50,27 +48,13 @@ public class St6OperationSystem {
         return resourcePath.replace("/", fileSeparator);
     }
 
-    protected String getFileSeparator() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/";
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "\\";
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
+    // TODO done ここで定義されている getFileSeparator をそのまま呼び出すシチュエーションって想定されるかな？ by subaru (2020/04/23)
+    // つまり new St6OperationSystem().getFileSeparator() みたいな呼び出しだね。
+    // あくまでこのクラスは概念的なもので実際に呼び出される時は、Mac OS や Windows OS という具体的な OS の時のみということであれば
+    // 抽象メソッドとして定義した方がよいかも。
 
-    protected String getUserDirectory() {
-        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Users/" + loginId;
-        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
-            return "/Documents and Settigs/" + loginId;
-        } else {
-            throw new IllegalStateException("Unknown osType: " + osType);
-        }
-    }
+    // TODO teachers abstarct メソッドに変更するにあたり, abstract クラスに変更しました。
+    // この場合、他の変数やメソッドの扱いはこのままでよろしいのでしょうか？
+    abstract protected String getFileSeparator();
+    abstract protected String getUserDirectory();
 }
