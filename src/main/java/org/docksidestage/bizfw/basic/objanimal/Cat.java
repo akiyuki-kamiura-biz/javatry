@@ -16,7 +16,7 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
 //import apple.laf.JRSUIConstants;
-import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.bizfw.basic.objanimal.mover.FastRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

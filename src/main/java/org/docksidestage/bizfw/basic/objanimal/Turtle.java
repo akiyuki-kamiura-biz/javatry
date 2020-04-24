@@ -1,6 +1,6 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.docksidestage.bizfw.basic.objanimal.runner.Crawler;
+import org.docksidestage.bizfw.basic.objanimal.mover.Crawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

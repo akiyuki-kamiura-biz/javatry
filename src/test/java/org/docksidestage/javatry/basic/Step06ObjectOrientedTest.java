@@ -21,8 +21,8 @@ import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.objanimal.*;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
-import org.docksidestage.bizfw.basic.objanimal.runner.Crawler;
-import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.bizfw.basic.objanimal.mover.Crawler;
+import org.docksidestage.bizfw.basic.objanimal.mover.FastRunner;
 import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
 import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.javatry.basic.st6.os.St6MacOs;
@@ -309,7 +309,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Animal クラスの soundLoudly() を見つけられていませんでした。
         // intelliJ で Shift+⌘+F でファイルを超えた検索機能を使おうと思います。
-        // TODO [comment] (もし知っていなければ)今回のように特定のメソッドがどこで override されているかどうか調べたい時はメソッドで command + option + b が便利です。 by subaru (2020/04/23)
+        // TODO done [comment] (もし知っていなければ)今回のように特定のメソッドがどこで override されているかどうか調べたい時はメソッドで command + option + b が便利です。 by subaru (2020/04/23)
         // 今回でいうと Loudable インターフェースの soundLoudly メソッドで上のショートカットを実行すると soundLoudly の実装先一覧が表示されます。
     }
 
@@ -336,7 +336,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // NOTE teachers このようなクラスやインターフェースの関係を理解する場合、
         // ノートの上で木構造を作りながら理解していけば大丈夫なのですか？
-        // TODO [comment] java においてはそれで良いと思います。 by subaru (2020/04/23)
+        // TODO done [comment] java においてはそれで良いと思います。 by subaru (2020/04/23)
         // 別に木構造が絶対と言うことではないけど、いい方法の一つということで理解して大丈夫だと思います。
         // ただし多重継承が可能なプログラミング言語においては単純な木構造にはならなくなるので注意です（java は多重継承は不可です）。
         // 少し話は脱線するけど、時間があれば多重継承の問題などこちらの記事わかりやすいのでおすすめです。
@@ -366,7 +366,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // NOTE teachers クラスやインスタンスの継承元が複数ある場合は、
         // 宣言時のクラスをどれにするかで、
         // 使用できるメソッドが異なるという理解で大丈夫ですか？
-        // TODO [comment] そうだね。 by subaru (2020/04/23)
+        // TODO done [comment] そうだね。 by subaru (2020/04/23)
         // ただしダウンキャストしてあげればそのキャストしたクラスに実装されているメソッドは使うことができます。
         // 不適切なダウンキャストをするとエラーになるので注意は必要だけど。
     }
@@ -401,7 +401,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Crawler と HighJumper を思いつきましたが、
         // Turtle に implement させるために、runner 内に　Crawler を実装しました。
-        // TODO [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
+        // TODO done [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
+        // TODO subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
         Crawler turtle = new Turtle();
         turtle.crawl();
 
@@ -462,6 +463,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // your confirmation code here
 
         // TODO teachers レビューお願いします。
+        // TODO teachers この問題の修正版(HitPoint クラスを使わないもの)を下のコミットに含めて行いました。
 
         // delegation の意味を調べました。
         // delegation (委譲) は処理を別クラスのメソッドに任せる場合に用いるものであり、

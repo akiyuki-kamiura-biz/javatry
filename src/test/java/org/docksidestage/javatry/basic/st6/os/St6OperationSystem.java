@@ -23,7 +23,6 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
-    // TODO 使用しない定義なら消してしまいましょう by subaru (2020/04/23)
     private static final String OS_TYPE_MAC = "Mac";
     private static final String OS_TYPE_WINDOWS = "Windows";
     private static final String OS_TYPE_OLD_WINDOWS = "OldWindows";
@@ -31,7 +30,7 @@ public class St6OperationSystem {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected final String loginId;
+    private final String loginId;
     private String osType;
 
     // ===================================================================================
@@ -39,13 +38,7 @@ public class St6OperationSystem {
     //                                                                         ===========
     public St6OperationSystem(String loginId) {
         this.loginId = loginId;
-        this.osType = getOsType();
     }
-
-    protected String getOsType() {
-        return "unknown";
-    }
-    ; // TODO　unknown 設定だとわかりにくい可能性あり
 
     // ===================================================================================
     //                                                                      User Directory
@@ -57,15 +50,27 @@ public class St6OperationSystem {
         return resourcePath.replace("/", fileSeparator);
     }
 
-    // TODO ここで定義されている getFileSeparator をそのまま呼び出すシチュエーションって想定されるかな？ by subaru (2020/04/23)
-    // つまり new St6OperationSystem().getFileSeparator() みたいな呼び出しだね。
-    // あくまでこのクラスは概念的なもので実際に呼び出される時は、Mac OS や Windows OS という具体的な OS の時のみということであれば
-    // 抽象メソッドとして定義した方がよいかも。
     protected String getFileSeparator() {
-        throw new IllegalStateException("Unknown osType: " + osType);
+        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
+            return "/";
+        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
+            return "\\";
+        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
+            return "\\";
+        } else {
+            throw new IllegalStateException("Unknown osType: " + osType);
+        }
     }
 
     protected String getUserDirectory() {
-        throw new IllegalStateException("Unknown osType: " + osType);
+        if (OS_TYPE_MAC.equalsIgnoreCase(osType)) {
+            return "/Users/" + loginId;
+        } else if (OS_TYPE_WINDOWS.equalsIgnoreCase(osType)) {
+            return "/Users/" + loginId;
+        } else if (OS_TYPE_OLD_WINDOWS.equalsIgnoreCase(osType)) {
+            return "/Documents and Settigs/" + loginId;
+        } else {
+            throw new IllegalStateException("Unknown osType: " + osType);
+        }
     }
 }
