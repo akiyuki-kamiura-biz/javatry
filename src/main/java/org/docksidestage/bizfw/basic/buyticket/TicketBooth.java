@@ -30,16 +30,28 @@ public class TicketBooth {
     private static final int TWO_DAY_PRICE = 13200;
     private static final int FOUR_DAY_PRICE = 22400;
 
-    private static final String ONE_DAY_LABEL = "OneDay";
-    private static final String TWO_DAY_LABEL = "TwoDay";
-    private static final String FOUR_DAY_LABEL = "FourDay";
+    class Quantity {
+        private int quantity;
+
+        public Quantity(int initialQuantity) {
+            this.quantity = initialQuantity;
+        }
+
+        public void decrement() {
+            quantity -= 1;
+        }
+
+        public int getQuantity() { return quantity; }
+    }
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private int oneDayQuantity = MAX_QUANTITY;
-    private int twoDayQuantity = MAX_QUANTITY;
-    private int fourDayQuantity = MAX_QUANTITY;
+
+    private Quantity oneDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity twoDayQuantity = new Quantity(MAX_QUANTITY);
+    private Quantity fourDayQuantity = new Quantity(MAX_QUANTITY);
+
     private Integer salesProceeds;
 
     // ===================================================================================
@@ -56,56 +68,51 @@ public class TicketBooth {
     // (人にも寄るけど、新卒研修ではそのようにお願いします。でも良い再利用ですね^^)
 
     public TicketBuyResult buyOneDayPassport(int handedMoney) {
-        judgePassportAvailable(handedMoney, ONE_DAY_PRICE, oneDayQuantity);
-        --oneDayQuantity;
-
-        int change = calculateSalesAndChange(handedMoney, ONE_DAY_PRICE);
-        Ticket oneDayTicket = new OneDayTicket(ONE_DAY_PRICE, ONE_DAY_LABEL);
-
-        TicketBuyResult tbr = new TicketBuyResult(oneDayTicket, change);
-        return tbr;
+        String ticketLabel = "OneDay";
+        return buyTicket(1, ticketLabel, handedMoney, ONE_DAY_PRICE, oneDayQuantity);
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) {
-        judgePassportAvailable(handedMoney, TWO_DAY_PRICE, oneDayQuantity);
-        --twoDayQuantity;
-
-        int change = calculateSalesAndChange(handedMoney, TWO_DAY_PRICE);
-        Ticket twoDayTicket = new MultipleDaysTicket(TWO_DAY_PRICE, 2, TWO_DAY_LABEL);
-
-        TicketBuyResult tbr = new TicketBuyResult(twoDayTicket, change);
-        return tbr;
+        String ticketLabel = "TwoDay";
+        return buyTicket(1, ticketLabel, handedMoney, TWO_DAY_PRICE, twoDayQuantity);
     }
 
     public TicketBuyResult buyFourDayPassport(int handedMoney){
-        judgePassportAvailable(handedMoney, FOUR_DAY_PRICE, fourDayQuantity);
-        --fourDayQuantity;
-        int change = calculateSalesAndChange(handedMoney, FOUR_DAY_PRICE);
-        Ticket fourDayTicket = new MultipleDaysTicket(FOUR_DAY_PRICE, 4, FOUR_DAY_LABEL);
-        TicketBuyResult tbr = new TicketBuyResult(fourDayTicket, change);
-        return tbr;
+        String ticketLabel = "FourDay";
+        return buyTicket(1, ticketLabel, handedMoney, FOUR_DAY_PRICE, fourDayQuantity);
     }
 
     // TODO teachers ヘルパーメソッドをこの位置に移動しました！
     // 個人的には、helper メソッドは、Attiribute, Constructor, Accessor のように、
     // 大枠で区切られていた方がわかりやすいと思ったのですが、これに関してはどう思われますか？
-    private void judgePassportAvailable(int handedMoney, int ticketPrice, int ticketQuantity){
-        if (ticketQuantity <= 0) {
+
+    private TicketBuyResult buyTicket(int days, String ticketLabel, int handedMoney, int ticketPrice, Quantity ticketQuantity) {
+        if (ticketQuantity.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
         if (handedMoney < ticketPrice) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
-    }
 
-    private int calculateSalesAndChange(int handedMoney, int ticketPrice) {
+        ticketQuantity.decrement();
+
         if (salesProceeds != null) {
             salesProceeds = salesProceeds + ticketPrice;
         } else {
             salesProceeds = ticketPrice;
         }
 
-        return handedMoney - ticketPrice;
+        int change = handedMoney - ticketPrice;
+
+        Ticket ticket;
+        if (days == 1) {
+            ticket = new OneDayTicket(ticketPrice, ticketLabel);
+        } else {
+            ticket = new MultipleDaysTicket(ticketPrice, days, ticketLabel);
+        }
+
+        TicketBuyResult tbr = new TicketBuyResult(ticket, change);
+        return tbr;
     }
 
     public static class TicketSoldOutException extends RuntimeException {
@@ -130,11 +137,11 @@ public class TicketBooth {
     //                                                                            Accessor
     //                                                                            ========
     public int getOneDayQuantity() {
-        return oneDayQuantity;
+        return oneDayQuantity.getQuantity();
     }
 
     public int getTwoDayQuantity() {
-        return twoDayQuantity;
+        return twoDayQuantity.getQuantity();
     }
 
     public Integer getSalesProceeds() {
