@@ -202,12 +202,12 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         Optional<St8Member> optMember = new St8DbFacade().selectMember(1);
         if (optMember.isPresent()) {
             St8Member member = optMember.get();
-            log(member.getMemberId(), member.getMemberName());
+            log(member.getMemberId(), member.getMemberName()); // 1, broadway
         }
         optMember.ifPresent(member -> {
-            log(member.getMemberId(), member.getMemberName());
+            log(member.getMemberId(), member.getMemberName()); // ifPresent(Comsumer)
         });
-        // your answer? => 
+        // your answer? => yes
     }
 
     /**
