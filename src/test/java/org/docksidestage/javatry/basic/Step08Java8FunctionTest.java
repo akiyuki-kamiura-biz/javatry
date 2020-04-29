@@ -88,7 +88,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             log(stage);
         });
         log("lost river");
-        // your answer? => 
+        // your answer? => harbor,broadway,dockside,hangar,lost river
     }
 
     private class St8BasicConsumer implements Consumer<String> {
