@@ -52,6 +52,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
 
         log("...Executing named class callback(!?)");
         helpCallbackConsumer(new St8BasicConsumer(title));
+        // dockside: over
 
         log("...Executing anonymous class callback");
         helpCallbackConsumer(new Consumer<String>() {
@@ -59,16 +60,19 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 log(stage + ": " + title);
             }
         });
+        // dockside: over
 
         log("...Executing lambda block style callback");
         helpCallbackConsumer(stage -> {
             log(stage + ": " + title);
         });
+        // dockside: over
 
         log("...Executing lambda expression style callback");
         helpCallbackConsumer(stage -> log(stage + ": " + title));
+        // dockside: over
 
-        // your answer? => 
+        // your answer? => yes
 
         // cannot reassign because it is used at callback process
         //title = "wave";
