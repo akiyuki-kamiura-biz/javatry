@@ -180,15 +180,18 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      */
     public void test_java8_optional_concept() {
         St8Member oldmember = new St8DbFacade().oldselectMember(1);
+        // St8Member{ memberId = 1, memberName = dockside, withdrawal = St8Withdrawal(11, "music") }
         if (oldmember != null) {
-            log(oldmember.getMemberId(), oldmember.getMemberName());
+            log(oldmember.getMemberId(), oldmember.getMemberName()); // 1, broadway
         }
         Optional<St8Member> optMember = new St8DbFacade().selectMember(1);
         if (optMember.isPresent()) {
             St8Member member = optMember.get();
-            log(member.getMemberId(), member.getMemberName());
+            log(member.getMemberId(), member.getMemberName()); // 1, broadway
         }
-        // your answer? => 
+        // your answer? => yes
+
+        // optional : null を許す
     }
 
     /**
