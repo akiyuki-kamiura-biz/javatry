@@ -33,9 +33,11 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りに実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author akiyuki_kamiura
  */
 public class Step08Java8FunctionTest extends PlainTestCase {
+
+    // memo: https://qiita.com/opengl-8080/items/22c4405a38127ed86a31
 
     // ===================================================================================
     //                                                                              Lambda
@@ -120,7 +122,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         String sea = helpCallbackFunction(number -> {
             return label + ": " + number;
         });
-        log(sea); // your answer? => 
+        log(sea); // your answer? => number: 7
     }
 
     private String helpCallbackFunction(Function<Integer, String> oneArgLambda) {
