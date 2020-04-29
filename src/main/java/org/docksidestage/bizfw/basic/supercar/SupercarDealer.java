@@ -24,19 +24,37 @@ import org.docksidestage.bizfw.basic.supercar.SupercarManufacturer.Supercar;
 public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) { // clientRequirement = "steering wheel is like sea"
-        SupercarManufacturer manufacturer = createSupercarManufacturer();
         if (clientRequirement.contains("steering wheel is like sea")) { // true
-            return manufacturer.makeSupercar("piari");
+            return makeSupercar("piari");
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            return manufacturer.makeSupercar("land");
+            return makeSupercar("land");
         } else if (clientRequirement.contains("steering wheel has many shop")) {
-            return manufacturer.makeSupercar("piari");
+            return makeSupercar("piari");
         } else {
             throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
         }
     }
 
+    private Supercar makeSupercar(String catalogKey) throws DealerCannotProvideSupercarException {
+        SupercarManufacturer manufacturer = createSupercarManufacturer();
+
+        // error handling
+        Supercar supercar;
+        try {
+            supercar = manufacturer.makeSupercar(catalogKey);
+        } catch (SupercarManufacturer.SupercarCannotMakeBySteeringWheelException e) {
+            throw new DealerCannotProvideSupercarException("Dealer cannot prepare ordered supercar because of manufacturer disorder.", e);
+        }
+        return supercar;
+    }
+
     protected SupercarManufacturer createSupercarManufacturer() {
         return new SupercarManufacturer();
+    }
+
+    public static class DealerCannotProvideSupercarException extends RuntimeException {
+        public DealerCannotProvideSupercarException(String msg, Throwable e) {
+            super(msg, e);
+        }
     }
 }

@@ -21,7 +21,7 @@ package org.docksidestage.bizfw.basic.screw;
  */
 public class SpecialScrewManufacturer {
 
-    public SpecialScrew makeSpecialScrew(ScrewSpec screwSpec) {
+    public SpecialScrew makeSpecialScrew(ScrewSpec screwSpec) throws SpecialScrewCannotMakeBySpecException {
         String specText = screwSpec.getSpecText();
         if (specText.equals("\\(^_^)/")) { // too pinpoint!?
             String msg = "The kawaii face is not useful to make screw: " + screwSpec;

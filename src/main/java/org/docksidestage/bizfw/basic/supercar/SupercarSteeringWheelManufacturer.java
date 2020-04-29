@@ -31,12 +31,20 @@ public class SupercarSteeringWheelManufacturer {
         return new SupercarSteeringWheelComponentDB();
     }
 
-    public SteeringWheel makeSteeringWheel(Integer steeringWheelId) throws SpecialScrewManufacturer.SpecialScrewCannotMakeBySpecException { // 3
+    public SteeringWheel makeSteeringWheel(Integer steeringWheelId) throws SteeringWheelCannotMakeByScrewException { // 3
         String specText = componentDB.findClincherSpecText(steeringWheelId); // specText = "\\(^_^)/"
         ScrewSpec screwSpec = new ScrewSpec(specText);
 
         SpecialScrewManufacturer manufacturer = createSpecialScrewManufacturer();
-        SpecialScrew screw = manufacturer.makeSpecialScrew(screwSpec);
+
+        // error handling
+        SpecialScrew screw;
+        try {
+            screw = manufacturer.makeSpecialScrew(screwSpec);
+        } catch (SpecialScrewManufacturer.SpecialScrewCannotMakeBySpecException e) {
+            throw new SteeringWheelCannotMakeByScrewException("Steering wheel cannot be made by lack of special screw.", e);
+        }
+
         return new SteeringWheel(screw);
     }
 
@@ -48,6 +56,12 @@ public class SupercarSteeringWheelManufacturer {
 
         public SteeringWheel(SpecialScrew screw) {
             // dummy
+        }
+    }
+
+    public static class SteeringWheelCannotMakeByScrewException extends RuntimeException {
+        public SteeringWheelCannotMakeByScrewException(String msg, Throwable e) {
+            super(msg, e);
         }
     }
 }

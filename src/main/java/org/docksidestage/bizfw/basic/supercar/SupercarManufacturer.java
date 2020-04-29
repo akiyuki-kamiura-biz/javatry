@@ -25,11 +25,18 @@ public class SupercarManufacturer {
 
     private final SupercarEasyCatalog catalog = new SupercarEasyCatalog();
 
-    public Supercar makeSupercar(String catalogKey) { // piari
+    public Supercar makeSupercar(String catalogKey) throws SupercarCannotMakeBySteeringWheelException { // piari
         Integer steeringWheelId = catalog.findSteeringWheelSpecId(catalogKey); // steeringWheelId = 3
 
         SupercarSteeringWheelManufacturer manufacturer = createSupercarSteeringWheelManufacturer(); // SupercarSteeringWheelManufacturer()
-        SteeringWheel steeringWheel = manufacturer.makeSteeringWheel(steeringWheelId);
+
+        // error handling
+        SteeringWheel steeringWheel;
+        try {
+            steeringWheel = manufacturer.makeSteeringWheel(steeringWheelId);
+        } catch (SupercarSteeringWheelManufacturer.SteeringWheelCannotMakeByScrewException e) {
+            throw new SupercarCannotMakeBySteeringWheelException("Supercar cannot be made by lack of steering wheels.", e);
+        }
 
         return new Supercar(steeringWheel);
     }
@@ -42,6 +49,12 @@ public class SupercarManufacturer {
 
         public Supercar(SteeringWheel steeringWheel) {
             // dummy
+        }
+    }
+
+    public static class SupercarCannotMakeBySteeringWheelException extends RuntimeException {
+        public SupercarCannotMakeBySteeringWheelException(String msg, Throwable e) {
+            super(msg, e);
         }
     }
 }
