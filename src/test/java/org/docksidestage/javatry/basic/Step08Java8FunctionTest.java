@@ -147,15 +147,21 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
-        helpCallbackSupplier(new Supplier<String>() { // sea
-            public String get() {
-                return "broadway";
-            }
+//        helpCallbackSupplier(new Supplier<String>() { // sea
+//            public String get() {
+//                return "broadway";
+//            }
+//        });
+        helpCallbackSupplier(() -> {
+            return "broadway";
         });
 
-        helpCallbackSupplier(() -> { // land
-            return "dockside";
-        });
+//        helpCallbackSupplier(() -> { // land
+//            return "dockside";
+//        });
+
+        Supplier<String> landSupplier = () -> "dockside";
+        helpCallbackSupplier(landSupplier);
 
         helpCallbackSupplier(() -> "hangar"); // piari
     }
