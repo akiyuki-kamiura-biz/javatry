@@ -198,6 +198,9 @@ public class Step07ExceptionTest extends PlainTestCase {
         } catch (RuntimeException e) {
             log("*No hint here for training.", e);
         }
+
+        // try-catch-finally, throws 等を使うことを考えましたが、
+        // この問題の正解はわからないので、下の問題を解いてからこちらを解き直そうと思います。
     }
 
     // ===================================================================================

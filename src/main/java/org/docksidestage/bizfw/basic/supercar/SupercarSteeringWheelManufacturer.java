@@ -31,13 +31,12 @@ public class SupercarSteeringWheelManufacturer {
         return new SupercarSteeringWheelComponentDB();
     }
 
-    public SteeringWheel makeSteeringWheel(Integer steeringWheelId) { // 3
+    public SteeringWheel makeSteeringWheel(Integer steeringWheelId) throws SpecialScrewManufacturer.SpecialScrewCannotMakeBySpecException { // 3
         String specText = componentDB.findClincherSpecText(steeringWheelId); // specText = "\\(^_^)/"
         ScrewSpec screwSpec = new ScrewSpec(specText);
 
         SpecialScrewManufacturer manufacturer = createSpecialScrewManufacturer();
         SpecialScrew screw = manufacturer.makeSpecialScrew(screwSpec);
-
         return new SteeringWheel(screw);
     }
 
