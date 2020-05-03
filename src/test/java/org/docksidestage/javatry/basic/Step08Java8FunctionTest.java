@@ -220,42 +220,49 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         St8Member oldmemberFirst = facade.oldselectMember(1);
         String sea;
         if (oldmemberFirst != null) {
+            // withdrawal = St8Withdrawal(11, "music")
             St8Withdrawal withdrawal = oldmemberFirst.oldgetWithdrawal();
             if (withdrawal != null) {
-                sea = withdrawal.oldgetPrimaryReason();
+                sea = withdrawal.oldgetPrimaryReason(); // music
             } else {
                 sea = "*no reason1";
             }
         } else {
             sea = "*no reason2";
         }
+        // sea = music
 
         Optional<St8Member> optMemberFirst = facade.selectMember(1);
         String land = optMemberFirst.flatMap(mb -> mb.getWithdrawal()).flatMap(wdl -> wdl.getPrimaryReason()).orElse("*no reason");
+        // Optional.flatMap: Optional を返す stream
+        // Optional.orElse: Optional.empty でなければ値を返す
+        // land = music
+
+        // NOTE: 関数インターフェースの T, U, R はよくわからないまま進めておきます。
 
         String piari = optMemberFirst.flatMap(mb -> {
-            return mb.getWithdrawal();
+            return mb.getWithdrawal(); // Optional<St8Withdrawal>
         }).map(wdl -> {
-            return wdl.oldgetPrimaryReason();
+            return wdl.oldgetPrimaryReason();// Optional<String> = music
         }).orElse("*no reason");
 
-        String bonvo = facade.selectMember(2).flatMap(mb -> {
+        String bonvo = facade.selectMember(2).flatMap(mb -> { // St8Member(memberId, "dockside", new St8Withdrawal(12, null))
             return mb.getWithdrawal();
         }).map(wdl -> wdl.oldgetPrimaryReason()).orElse("*no reason");
 
-        String dstore = facade.selectMember(3) //
-                .flatMap(mb -> mb.getWithdrawal()) //
-                .flatMap(wdl -> wdl.getPrimaryReason()) //
+        String dstore = facade.selectMember(3) // St8Member(memberId, "hangar", null);
+                .flatMap(mb -> mb.getWithdrawal()) // Empty optional
+                .flatMap(wdl -> wdl.getPrimaryReason()) // Empty optional
                 .orElse("*no reason");
 
         Integer amba = facade.selectMember(2).flatMap(mb -> mb.getWithdrawal()).map(wdl -> wdl.getWithdrawalId()).orElse(-1);
 
-        log(sea); // your answer? => 
-        log(land); // your answer? => 
-        log(piari); // your answer? => 
-        log(bonvo); // your answer? => 
-        log(dstore); // your answer? => 
-        log(amba); // your answer? => 
+        log(sea); // your answer? => music
+        log(land); // your answer? => music
+        log(piari); // your answer? => music
+        log(bonvo); // your answer? => *no reason
+        log(dstore); // your answer? => *no reason
+        log(amba); // your answer? => 12
     }
 
     /**
