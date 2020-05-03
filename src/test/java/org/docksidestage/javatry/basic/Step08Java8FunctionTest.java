@@ -317,13 +317,17 @@ public class Step08Java8FunctionTest extends PlainTestCase {
     public void test_java8_stream_map_flatMap() {
         List<St8Member> memberList = new St8DbFacade().selectMemberListAll();
         int sea = memberList.stream()
-                .filter(mb -> mb.getWithdrawal().isPresent())
+                .filter(mb -> mb.getWithdrawal().isPresent()) // true, true, false
                 .flatMap(mb -> mb.getPurchaseList().stream())
+                // St8Purchase(111, 100), St8Purchase(112, 200), St8Purchase(113, 200), St8Purchase(114, 300)
                 .filter(pur -> pur.getPurchaseId() > 100)
+                // St8Purchase(111, 100), St8Purchase(112, 200), St8Purchase(113, 200), St8Purchase(114, 300)
                 .mapToInt(pur -> pur.getPurchasePrice())
+                // 100, 200, 200, 300
                 .distinct()
+                // 100, 200, 300
                 .sum();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 600
     }
 
     // *Stream API will return at Step12 again, it's worth the wait!
