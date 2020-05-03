@@ -300,14 +300,14 @@ public class Step08Java8FunctionTest extends PlainTestCase {
             }
         }
         String sea = oldfilteredNameList.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => ["broadway", "dockside"]
 
-        List<String> filteredNameList = memberList.stream() //
-                .filter(mb -> mb.getWithdrawal().isPresent()) //
+        List<String> filteredNameList = memberList.stream()
+                .filter(mb -> mb.getWithdrawal().isPresent())
                 .map(mb -> mb.getMemberName()) //
                 .collect(Collectors.toList());
         String land = filteredNameList.toString();
-        log(land); // your answer? => 
+        log(land); // your answer? => ["broadway", "dockside"]
     }
 
     /**
