@@ -82,10 +82,13 @@ public class TicketBooth {
         return buyTicket(1, ticketLabel, handedMoney, FOUR_DAY_PRICE, fourDayQuantity);
     }
 
-    // TODO teachers ヘルパーメソッドをこの位置に移動しました！
-    // 個人的には、helper メソッドは、Attiribute, Constructor, Accessor のように、
+    // TODO done teachers ヘルパーメソッドをこの位置に移動しました！
+    // 個人的には、helper メソッドは、Attribute, Constructor, Accessor のように、
     // 大枠で区切られていた方がわかりやすいと思ったのですが、これに関してはどう思われますか？
+    // NOTE Helperメソッドは基本的にHelperメソッドを使うメソッドの近くに置くことで、追いやすい方向ですね by winkichanwi 20200511
 
+    // TODO kamiura さらに訓練ですが、他のStep進んで余裕があったこそここに戻ってくださいね by winkichanwi 20200511
+    // 基本的にticketLabelによって、どのticketPriceとどのQuantityを渡すのが決まっていますよね。それを表現するためにリファクタしてみてもらえます？
     private TicketBuyResult buyTicket(int days, String ticketLabel, int handedMoney, int ticketPrice, Quantity ticketQuantity) {
         if (ticketQuantity.getQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
