@@ -402,7 +402,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // Crawler と HighJumper を思いつきましたが、
         // Turtle に implement させるために、runner 内に　Crawler を実装しました。
         // TODO done [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
-        // TODO subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
+        // TODO done subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
+        // NOTE いいですね、まあ、moverの命名はおいといて、このパッケージの汎用性によって、runnerとcrawlerは一つのmoverパッケージではなく、二つパッケージに別れる考え方もあります。 winkichanwi 20200511
         Crawler turtle = new Turtle();
         turtle.crawl();
 
@@ -462,8 +463,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
 
-        // TODO teachers レビューお願いします。
-        // TODO teachers この問題の修正版(HitPoint クラスを使わないもの)を下のコミットに含めて行いました。
+        // TODO done teachers レビューお願いします。
+        // TODO done teachers この問題の修正版(HitPoint クラスを使わないもの)を下のコミットに含めて行いました。
 
         // delegation の意味を調べました。
         // delegation (委譲) は処理を別クラスのメソッドに任せる場合に用いるものであり、
@@ -479,6 +480,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // もう少しいい方法があれば教えていただきたいです。
 
+        // TODO kamiura なるほどですね、調べてありがとう。そうですね、ここの質問はちゃんとAnimalの子供達に対応しているか、どう対応するのか注目ポイントで、
+        // zombieを対応すること漏れずに対応したのはいいことです。が、zombieはAnimalを継承しているのにconstructorでsuper()をしないのはあまりよくありせん。
+        // それを修正するのは、BarkProcessを初期化する処理を切り出してみてください。
+        // これを自分の力を修正してみたら、他のいい方法揉みたいなら、自分の方もよかったので、参考してみてもいいかもしてません。winkichanwi 20200511
         Dog dog = new Dog();
         BarkedSound barkedSound = dog.bark();
         log(barkedSound.getBarkWord());
@@ -497,5 +502,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // その上で、zombie にも共通化を行おうと思った場合に、
         // ZombieDiary などという特有の処理が共通化を妨げているため、適切でないと思いました。
+
+        // NOTE ありがとう。そうですね、実装上で考えるとそうですし、実際ユースケースを考えて、
+        // もし、将来的にCatZombieやDogZombieが登場したらどうなるかとかも考えてみたらZombieはclassではない方がいいかもしれません。 winkichanwi 20200511
     }
 }
