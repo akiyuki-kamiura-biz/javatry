@@ -16,6 +16,7 @@
 package org.docksidestage.javatry.basic;
 
 import java.io.File;
+
 import org.docksidestage.bizfw.basic.supercar.SupercarClient;
 import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
 import org.docksidestage.unit.PlainTestCase;
@@ -101,6 +102,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             log(file.getCanonicalPath());
         } catch (java.io.IOException e) {
             log(e.getMessage());
+            // TODO kamiura printStackTreeというメソッドあるよ winkichanwi 20200513
             log(e.getStackTrace());
         }
     }
@@ -130,7 +132,7 @@ public class Step07ExceptionTest extends PlainTestCase {
 
         // getCause を用いることで、try ~ catch で連鎖している error の原因を探ることができる
         // log(e) では各エラーのスタックトレースを表示できる？
-        //
+        // あっていますね winkichanwi 20200512
     }
 
     private void throwCauseFirstLevel() {
