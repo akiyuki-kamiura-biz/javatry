@@ -127,7 +127,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             land = cause.getClass().getSimpleName();
             log(sea); // your answer? => Failed to call the third help method: -1
             log(land); // your answer? => IllegalArgumentException
-            log(e); // your answer? =>
+            log(e); // your answer? => // TODO kamiura 何が出力されている？ winkichanwi 20200512
         }
 
         // getCause を用いることで、try ~ catch で連鎖している error の原因を探ることができる
@@ -210,6 +210,7 @@ public class Step07ExceptionTest extends PlainTestCase {
 
         // TODO teachers 例外を投げる関数に throws をつける必要性は、今回の場合ありますか？
         // また、つける必要がある場合はどんな時ですか？
+        //
 
     }
 
