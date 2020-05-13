@@ -208,9 +208,11 @@ public class Step07ExceptionTest extends PlainTestCase {
         // 関数内で起こった Exception を cause として与えた Exception クラスでラッピングしながら、
         // 上の階層へと伝播させていこうと思います。
 
-        // TODO teachers 例外を投げる関数に throws をつける必要性は、今回の場合ありますか？
+        // done teachers 例外を投げる関数に throws をつける必要性は、今回の場合ありますか？
         // また、つける必要がある場合はどんな時ですか？
-        //
+        // NOTE メソッドにthrows をつけるかどうかについて、まずはchecked exceptionとunchecked exceptionを理解してもらいたい winkichanwi 20200513
+        // 参考の記事：https://ysk24ok.github.io/2017/01/27/java_checked_exception.html
+        // 上記を読んでみてもわからなければ聞いてください
 
     }
 
