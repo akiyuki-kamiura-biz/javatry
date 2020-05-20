@@ -261,6 +261,19 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる "front" で終わる文字列の最初の一文字は？)
      */
     public void test_substring_findFirstChar() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        String answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof String)
+                .map(obj -> (String) obj)
+                .filter(str -> str.endsWith("front"))
+                .map(str -> String.valueOf(str.charAt(0)))
+                .findFirst()
+                .orElse("*not found");
+
+        log(answer);
     }
 
     /**
