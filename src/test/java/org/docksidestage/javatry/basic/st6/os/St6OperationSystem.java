@@ -34,7 +34,7 @@ abstract class St6OperationSystem {
         this.osType = initOsType();
     }
 
-    // TODO done kamiura 初期化のためであればメソッド名はinitOsTypeなどがいいかな by winkichanwi 20200520
+    // done kamiura 初期化のためであればメソッド名はinitOsTypeなどがいいかな by winkichanwi 20200520
     protected String initOsType() {
         return "unknown";
     }

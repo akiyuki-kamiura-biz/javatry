@@ -29,6 +29,7 @@ public class TicketBooth {
 
     private static final int MAX_QUANTITY = 10;
 
+    // TODO kamiura クラスが長くなったら、別ファイルにおいた方がいいかも by winkichanwi 20200520
     class TicketState {
         private int days;
         private int storedQuantity;
