@@ -15,12 +15,10 @@
  */
 package org.docksidestage.javatry.colorbox;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.space.BoxSpace;
@@ -69,12 +67,12 @@ public class Step12StreamStringTest extends PlainTestCase {
         String answer = colorBoxList.stream()
                 // TODO done kamiura ここから2行は .flatMap(colorBox -> colorBox.getSpaceList().stream()) に書き換えられる by winkichanwi 20200520
                 // ここは多分flatMapあまりわかってないでしょうか？
-                // TODO teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
+                // TODO done teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
                 //  flatMap は複数の stream を平坦にまとめて一つの stream にする効用があるということですか？
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
-                .map(obj -> String.valueOf(obj))
+                .map(obj -> (String) obj)
                 // TODO done kamiura .maxのドキュメントをよく見るとComparatorの引数を求めているから、書き換えてみてわからないなら聞いてください by winkicahnwi 20200520
                 .max(Comparator.comparingInt(String::length))
                 .orElse("*not found");
@@ -93,7 +91,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
-                .mapToInt(obj -> String.valueOf(obj).length())
+                .mapToInt(obj -> ((String) obj).length())
                 .summaryStatistics();
 
         int answer = iss.getMax() - iss.getMin();
@@ -112,7 +110,7 @@ public class Step12StreamStringTest extends PlainTestCase {
         String answer = colorBoxList.stream()
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
-                .map(obj -> String.valueOf(obj))
+                .map(obj -> (String) obj)
                 .sorted(Comparator.comparingInt(String::length).reversed())
                 .skip(1)
                 .findFirst()
@@ -132,7 +130,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
-                .mapToInt(obj -> String.valueOf(obj).length())
+                .mapToInt(obj -> ((String) obj).length())
                 .sum();
 
         log(answer);
@@ -152,7 +150,7 @@ public class Step12StreamStringTest extends PlainTestCase {
 
         log(answer);
 
-        // TODO teachers yellow と purple がありますが、この場合、yellow だけでいいのでしょうか？
+        // TODO done teachers yellow と purple がありますが、この場合、yellow だけでいいのでしょうか？
     }
 
     // ===================================================================================
@@ -163,6 +161,22 @@ public class Step12StreamStringTest extends PlainTestCase {
      * ("Water" で始まる文字列をしまっているカラーボックスの色は？)
      */
     public void test_startsWith_findFirstWord() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        String answer = colorBoxList.stream()
+                .map(colorBox -> {
+                    Boolean isContainedTargetString = colorBox.getSpaceList().stream()
+                            .map(boxSpace -> boxSpace.getContent())
+                            .filter(obj -> obj instanceof String)
+                            .map(obj -> (String) obj)
+                            .anyMatch(str -> str.startsWith("Water"));
+
+                    return isContainedTargetString ? colorBox.getColor().getColorName() : null;
+                }).filter(str -> str != null)
+                .findFirst()
+                .orElse("*not found");
+
+        log(answer);
     }
 
     /**
