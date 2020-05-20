@@ -16,6 +16,7 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
 //import apple.laf.JRSUIConstants;
+
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The object for animal(動物).
  * @author jflute
+ * @author akiyuki_kamiura
  */
 public abstract class Animal implements Loudable {
 
