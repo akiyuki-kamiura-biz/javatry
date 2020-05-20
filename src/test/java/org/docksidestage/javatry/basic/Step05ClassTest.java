@@ -247,7 +247,7 @@ public class Step05ClassTest extends PlainTestCase {
         // 正直、TicketBooth での buyOneDayTicket, buyTwoDayTicket, buyFourDayTicket のメソッド共通化が
         // うまくないと感じています。うまくやる方法があったら教えていただきたいです。
 
-        // TODO teachers jflute さんのリファクタリングの講義を見て全体的に修正しました。
+        // TODO done teachers jflute さんのリファクタリングの講義を見て全体的に修正しました。
 
     }
 }
