@@ -304,6 +304,19 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる "o" (おー) を含んだ文字列から "o" を全て除去したら何文字？)
      */
     public void test_replace_remove_o() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        int answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof String)
+                .map(obj -> (String) obj)
+                .filter(str -> str.contains("o"))
+                .map(str -> str.replace("o", ""))
+                .mapToInt(str -> str.length())
+                .sum();
+
+        log(answer);
     }
 
     /**
