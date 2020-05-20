@@ -17,7 +17,10 @@ package org.docksidestage.javatry.colorbox;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.space.BoxSpace;
@@ -86,16 +89,15 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMaxMinDiff() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // 最大と最小の差 => 差の最大値として前の問題のものを少し改良しました。
+        IntSummaryStatistics iss = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof String)
+                .mapToInt(obj -> String.valueOf(obj).length())
+                .summaryStatistics();
 
-//        String answer = colorBoxList.stream()
-//                .map(colorBox -> colorBox.getSpaceList())
-//                .flatMap(Collection::stream)
-//                .map(boxSpace -> boxSpace.getContent())
-//                .filter(obj -> obj instanceof String)
-//                .map(obj -> String.valueOf(obj))
-//                .map(str -> str.length())
-//
+        int answer = iss.getMax() - iss.getMin();
+        log(answer);
     }
 
     // has small #adjustmemts from ClassicStringTest
@@ -105,6 +107,7 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる値 (文字列以外はtoString()) の中で、二番目に長い文字列は？ (Streamでのソートありで))
      */
     public void test_length_findSecondMax() {
+
     }
 
     /**
