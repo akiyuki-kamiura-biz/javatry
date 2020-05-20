@@ -480,11 +480,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // もう少しいい方法があれば教えていただきたいです。
 
-        // TODO done kamiura なるほどですね、調べてありがとう。そうですね、ここの質問はちゃんとAnimalの子供達に対応しているか、どう対応するのか注目ポイントで、
+        // done kamiura なるほどですね、調べてありがとう。そうですね、ここの質問はちゃんとAnimalの子供達に対応しているか、どう対応するのか注目ポイントで、
         // zombieを対応すること漏れずに対応したのはいいことです。が、zombieはAnimalを継承しているのにconstructorでsuper()をしないのはあまりよくありせん。
         // それを修正するのは、BarkProcessを初期化する処理を切り出してみてください。
         // これを自分の力を修正してみたら、他のいい方法揉みたいなら、自分の方もよかったので、参考してみてもいいかもしてません。winkichanwi 20200511
-        // TODO winkichanwi ありがとうございます。
+        // done winkichanwi ありがとうございます。
         //  winki さんの javatry を見させていただきましたが、
         //  BarkProcess のコンストラクタに animal を渡すという考えは、自分は考えが及んでいませんでした。
         //  そちらのやり方の方がシンプルで可読性が高く、拡張もしやすいと思いました。

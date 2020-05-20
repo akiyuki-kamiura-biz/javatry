@@ -107,13 +107,13 @@ public class TicketBooth {
     // done kamiura さらに訓練ですが、他のStep進んで余裕があったこそここに戻ってくださいね by winkichanwi 20200511
     // 基本的にticketLabelによって、どのticketPriceとどのQuantityを渡すのが決まっていますよね。それを表現するためにリファクタしてみてもらえます？
 
-    // TODO done teachers (winki さんの上の質問に対して) テストの考え方という講義の Code Smell という考え方の中に、
+    // done teachers (winki さんの上の質問に対して) テストの考え方という講義の Code Smell という考え方の中に、
     // 「同じ引数の組み合わせを多くの関数で使用されている場合はクラスとして抽出する（データの群れ）」という方法を教わったので、今回はそれを適用しました。
     // この手法で適切であったかのフィードバックをいただきたいです。
     // ticketQuantity クラスの用途を広げて、ticketLabel, ticketPrice をメンバ変数として持つ ticketInfo クラスを用意しました。
     // NOTE done うまいですね！早速コードスメルについての知識活用したんだね。ここはdata clumpsというコードスメルの対策です。by winkichanwi 20200520
 
-    // TODO done teachers また、ticketInfo クラスという命名が適切かについても少し疑問が残ります。。。
+    // done teachers また、ticketInfo クラスという命名が適切かについても少し疑問が残ります。。。
     // より良い命名があれば教えていただきたいです。。
     // NOTE done 命名って基本的に役割を表すで、確かチケット情報もっているが、その中のquantityはmutableだから、quantityの状態を持っているクラスでも言えるので、
     // TicketStateくらいは思いつきましたが今のままでもいいですね。 by winkichanwi 20200520
