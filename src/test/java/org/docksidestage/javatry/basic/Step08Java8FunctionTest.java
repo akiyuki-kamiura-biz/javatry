@@ -147,24 +147,17 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
-        //        helpCallbackSupplier(new Supplier<String>() { // sea
-        //            public String get() {
-        //                return "broadway";
-        //            }
-        //        });
         helpCallbackSupplier(() -> {
             return "broadway";
         });
 
-        //        helpCallbackSupplier(() -> { // land
-        //            return "dockside";
-        //        });
-
         Supplier<String> landSupplier = () -> "dockside";
         helpCallbackSupplier(landSupplier);
 
-        // TODO kamiura BlockのLambda式は{}でreturn文を書く形式です winkichanwi 20200520
-        helpCallbackSupplier(() -> "hangar"); // piari
+        // TODO done kamiura BlockのLambda式は{}でreturn文を書く形式です winkichanwi 20200520
+        helpCallbackSupplier(() -> {
+            return "hangar";
+        }); // piari
     }
 
     private void helpCallbackSupplier(Supplier<String> oneArgLambda) {
@@ -193,8 +186,11 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // your answer? => yes
 
         // optional : null を許す
-        // NOTE(winkichanwi) null を許すというより、補足すると、その持っているものはnullでもいいから、箱にいれておく。
+        // NOTE done (winkichanwi) null を許すというより、補足すると、その持っているものはnullでもいいから、箱にいれておく。
         // また処理の中に存在するかという情報を取っておかないとだめというのを明示になっている。
+
+        // TODO　teachers つまり optional は この値はnull かもしれないよ、と
+        //  コードを書く別のエンジニアに対して明示的に警告をする役割があるということですか？
     }
 
     /**
@@ -284,7 +280,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         } catch (IllegalStateException e) {
             sea = e.getMessage();
         }
-        log(sea); // your answer? =>  // TODO kamiura 答えもれました〜 winkichanwi 20200520
+        log(sea); // your answer? =>  // TODO done kamiura 答えもれました〜 winkichanwi 20200520
     }
 
     // ===================================================================================

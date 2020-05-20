@@ -19,9 +19,8 @@ package org.docksidestage.javatry.basic.st6.dbms;
  * @author jflute
  * @author akiyuki_kamiura
  */
-public class St6MySql extends St6Rdb {
-    public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = pageSize * (pageNumber - 1);
+public class St6MySql extends St6DataBaseManagementSystem {
+    public String generateFormattedPagingQuery(int offset, int pageSize) {
         return "limit " + offset + ", " + pageSize;
     }
 }

@@ -125,9 +125,11 @@ public class Step07ExceptionTest extends PlainTestCase {
             Throwable cause = e.getCause();
             sea = cause.getMessage();
             land = cause.getClass().getSimpleName();
-            log(sea); // your answer? => Failed to call the third help method: -1
+            log(sea); // your answer? => IllegalStateException
             log(land); // your answer? => IllegalArgumentException
-            log(e); // your answer? => // TODO kamiura 何が出力されている？ winkichanwi 20200512
+            log(e); // your answer? => IllegalStateException <- IllegalArgumentException <- NumberFormatException の cause 鎖
+
+            // TODO done kamiura 何が出力されている？ winkichanwi 20200512
         }
 
         // getCause を用いることで、try ~ catch で連鎖している error の原因を探ることができる
