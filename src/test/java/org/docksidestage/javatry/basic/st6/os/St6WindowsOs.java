@@ -10,7 +10,7 @@ public class St6WindowsOs extends St6OperationSystem {
     }
 
     @Override
-    protected String getOsType() {
+    protected String initOsType() {
         return "Windows";
     }
 

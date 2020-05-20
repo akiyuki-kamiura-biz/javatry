@@ -25,7 +25,7 @@ import org.docksidestage.unit.PlainTestCase;
  * The test of String with color-box, using Stream API you can. <br>
  * Show answer by log() for question of javadoc.
  * @author jflute
- * @author your_name_here
+ * @author akiyuki_kamiura
  */
 public class Step12StreamStringTest extends PlainTestCase {
 
@@ -38,12 +38,16 @@ public class Step12StreamStringTest extends PlainTestCase {
      */
     public void test_length_basic() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+        // getColorBoxList() -> 10個の異なる StandardColorBox を返す
+        // StandardColorBox (<- AbstractColorBox) は, color と spaceList と size を持つ
+
         String answer = colorBoxList.stream()
                 .findFirst()
                 .map(colorBox -> colorBox.getColor().getColorName())
                 .map(colorName -> colorName.length() + " (" + colorName + ")")
                 .orElse("*not found");
         log(answer);
+        // => green: 5文字
     }
 
     /**

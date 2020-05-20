@@ -9,7 +9,7 @@ public class St6OldWindowsOs extends St6OperationSystem {
     }
 
     @Override
-    protected String getOsType() {
+    protected String initOsType() {
         return "OldWindows";
     }
 

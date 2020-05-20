@@ -9,7 +9,7 @@ public class St6MacOs extends St6OperationSystem {
     }
 
     @Override
-    protected String getOsType() {
+    protected String initOsType() {
         return "Mac";
     }
 
