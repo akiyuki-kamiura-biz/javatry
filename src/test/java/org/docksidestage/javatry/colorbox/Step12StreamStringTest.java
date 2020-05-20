@@ -143,6 +143,16 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中で、色の名前が一番長いものは？)
      */
     public void test_length_findMaxColorSize() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        String answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getColor().getColorName())
+                .max(Comparator.comparingInt(String::length))
+                .orElse("*not found");
+
+        log(answer);
+
+        // TODO teachers yellow と purple がありますが、この場合、yellow だけでいいのでしょうか？
     }
 
     // ===================================================================================
