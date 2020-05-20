@@ -69,8 +69,9 @@ public class Step12StreamStringTest extends PlainTestCase {
         String answer = colorBoxList.stream()
                 // TODO done kamiura ここから2行は .flatMap(colorBox -> colorBox.getSpaceList().stream()) に書き換えられる by winkichanwi 20200520
                 // ここは多分flatMapあまりわかってないでしょうか？
-                // TODO teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
+                // TODO done teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
                 //  flatMap は複数の stream を平坦にまとめて一つの stream にする効用があるということですか？
+                // [comment] すごーい完全理解したじゃん、その通りです by winkichanwi 20200520
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
