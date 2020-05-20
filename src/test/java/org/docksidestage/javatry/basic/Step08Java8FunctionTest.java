@@ -147,22 +147,23 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * </pre>
      */
     public void test_java8_lambda_convertStyle_basic() {
-//        helpCallbackSupplier(new Supplier<String>() { // sea
-//            public String get() {
-//                return "broadway";
-//            }
-//        });
+        //        helpCallbackSupplier(new Supplier<String>() { // sea
+        //            public String get() {
+        //                return "broadway";
+        //            }
+        //        });
         helpCallbackSupplier(() -> {
             return "broadway";
         });
 
-//        helpCallbackSupplier(() -> { // land
-//            return "dockside";
-//        });
+        //        helpCallbackSupplier(() -> { // land
+        //            return "dockside";
+        //        });
 
         Supplier<String> landSupplier = () -> "dockside";
         helpCallbackSupplier(landSupplier);
 
+        // TODO kamiura BlockのLambda式は{}でreturn文を書く形式です winkichanwi 20200520
         helpCallbackSupplier(() -> "hangar"); // piari
     }
 
@@ -192,6 +193,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // your answer? => yes
 
         // optional : null を許す
+        // NOTE(winkichanwi) null を許すというより、補足すると、その持っているものはnullでもいいから、箱にいれておく。
+        // また処理の中に存在するかという情報を取っておかないとだめというのを明示になっている。
     }
 
     /**
@@ -281,7 +284,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         } catch (IllegalStateException e) {
             sea = e.getMessage();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>  // TODO kamiura 答えもれました〜 winkichanwi 20200520
     }
 
     // ===================================================================================
@@ -302,9 +305,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         String sea = oldfilteredNameList.toString();
         log(sea); // your answer? => ["broadway", "dockside"]
 
-        List<String> filteredNameList = memberList.stream()
-                .filter(mb -> mb.getWithdrawal().isPresent())
-                .map(mb -> mb.getMemberName()) //
+        List<String> filteredNameList = memberList.stream().filter(mb -> mb.getWithdrawal().isPresent()).map(mb -> mb.getMemberName()) //
                 .collect(Collectors.toList());
         String land = filteredNameList.toString();
         log(land); // your answer? => ["broadway", "dockside"]
@@ -316,8 +317,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      */
     public void test_java8_stream_map_flatMap() {
         List<St8Member> memberList = new St8DbFacade().selectMemberListAll();
-        int sea = memberList.stream()
-                .filter(mb -> mb.getWithdrawal().isPresent()) // true, true, false
+        int sea = memberList.stream().filter(mb -> mb.getWithdrawal().isPresent()) // true, true, false
                 .flatMap(mb -> mb.getPurchaseList().stream())
                 // St8Purchase(111, 100), St8Purchase(112, 200), St8Purchase(113, 200), St8Purchase(114, 300)
                 .filter(pur -> pur.getPurchaseId() > 100)
