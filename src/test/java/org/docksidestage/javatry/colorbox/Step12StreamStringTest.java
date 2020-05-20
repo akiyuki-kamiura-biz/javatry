@@ -231,6 +231,26 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる「ど」を二つ以上含む文字列で、最後の「ど」は何文字目から始まる？ (e.g. "どんどん" => 3))
      */
     public void test_lastIndexOf_findIndex() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        int answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof String)
+                .map(obj -> (String) obj)
+                .map(str -> {
+                    int firstIndex = str.indexOf("ど");
+                    int secondIndex = -1;
+                    if (firstIndex != -1 && firstIndex != str.length()-1) {
+                        secondIndex = str.substring(firstIndex+1).indexOf("ど");
+                    }
+
+                    return (secondIndex != -1) ? (firstIndex + secondIndex + 1) + 1 : null;
+                }).filter(str -> str != null)
+                .findFirst()
+                .orElse(-1);
+
+        log(answer);
     }
 
     // ===================================================================================
