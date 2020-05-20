@@ -79,6 +79,18 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の中で、一番長いものと短いものの差は何文字？)
      */
     public void test_length_findMaxMinDiff() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        // 最大と最小の差 => 差の最大値として前の問題のものを少し改良しました。
+
+        String answer = colorBoxList.stream()
+                .map(colorBox -> colorBox.getSpaceList())
+                .flatMap(Collection::stream)
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof String)
+                .map(obj -> String.valueOf(obj))
+                .map(str -> str.length())
+                
     }
 
     // has small #adjustmemts from ClassicStringTest
