@@ -69,6 +69,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 // ここは多分flatMapあまりわかってないでしょうか？
                 // TODO done teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
                 //  flatMap は複数の stream を平坦にまとめて一つの stream にする効用があるということですか？
+                // [comment] すごーい完全理解したじゃん、その通りです by winkichanwi 20200520
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
