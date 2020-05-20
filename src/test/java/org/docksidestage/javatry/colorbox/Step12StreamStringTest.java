@@ -16,6 +16,7 @@
 package org.docksidestage.javatry.colorbox;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -63,15 +64,16 @@ public class Step12StreamStringTest extends PlainTestCase {
         //  このような書き方でいいのかをフィードバックいただきたいです。
 
         String answer = colorBoxList.stream()
-                // TODO kamiura ここから2行は .flatMap(colorBox -> colorBox.getSpaceList().stream()) に書き換えられる by winkichanwi 20200520
+                // TODO done kamiura ここから2行は .flatMap(colorBox -> colorBox.getSpaceList().stream()) に書き換えられる by winkichanwi 20200520
                 // ここは多分flatMapあまりわかってないでしょうか？
-                .map(colorBox -> colorBox.getSpaceList())
-                .flatMap(Collection::stream)
+                // TODO teachers おそらく、flatMap について理解が及んでいないと思うし、List は Stream 化できるという発想もないと思います。
+                //  flatMap は複数の stream を平坦にまとめて一つの stream にする効用があるということですか？
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
                 .map(obj -> String.valueOf(obj))
-                // TODO kamiura .maxのドキュメントをよく見るとComparatorの引数を求めているから、書き換えてみてわからないなら聞いてください by winkicahnwi 20200520
-                .max((l, r) -> l.length() - r.length())
+                // TODO done kamiura .maxのドキュメントをよく見るとComparatorの引数を求めているから、書き換えてみてわからないなら聞いてください by winkicahnwi 20200520
+                .max(Comparator.comparingInt(String::length))
                 .orElse("*not found");
 
         log(answer);
@@ -86,14 +88,14 @@ public class Step12StreamStringTest extends PlainTestCase {
 
         // 最大と最小の差 => 差の最大値として前の問題のものを少し改良しました。
 
-        String answer = colorBoxList.stream()
-                .map(colorBox -> colorBox.getSpaceList())
-                .flatMap(Collection::stream)
-                .map(boxSpace -> boxSpace.getContent())
-                .filter(obj -> obj instanceof String)
-                .map(obj -> String.valueOf(obj))
-                .map(str -> str.length())
-                
+//        String answer = colorBoxList.stream()
+//                .map(colorBox -> colorBox.getSpaceList())
+//                .flatMap(Collection::stream)
+//                .map(boxSpace -> boxSpace.getContent())
+//                .filter(obj -> obj instanceof String)
+//                .map(obj -> String.valueOf(obj))
+//                .map(str -> str.length())
+//
     }
 
     // has small #adjustmemts from ClassicStringTest
