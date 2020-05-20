@@ -29,13 +29,13 @@ public class TicketBooth {
 
     private static final int MAX_QUANTITY = 10;
 
-    class TicketInfo {
+    class TicketState {
         private int days;
         private int storedQuantity;
         private int ticketPrice;
         private String ticketLabel;
 
-        public TicketInfo(int days, String ticketLabel, int ticketPrice, int initialQuantity) {
+        public TicketState(int days, String ticketLabel, int ticketPrice, int initialQuantity) {
             this.days = days;
             this.ticketLabel = ticketLabel;
             this.ticketPrice = ticketPrice;
@@ -68,9 +68,9 @@ public class TicketBooth {
     //                                                                           Attribute
     //                                                                           =========
 
-    private TicketInfo oneDayTicketInfo = new TicketInfo(1, "OneDay", 7400, MAX_QUANTITY);
-    private TicketInfo twoDayTicketInfo = new TicketInfo(2, "TwoDay", 13200, MAX_QUANTITY);
-    private TicketInfo fourDayTicketInfo = new TicketInfo(4, "FourDay", 22400, MAX_QUANTITY);
+    private TicketState oneDayTicketInfo = new TicketState(1, "OneDay", 7400, MAX_QUANTITY);
+    private TicketState twoDayTicketInfo = new TicketState(2, "TwoDay", 13200, MAX_QUANTITY);
+    private TicketState fourDayTicketInfo = new TicketState(4, "FourDay", 22400, MAX_QUANTITY);
 
     private Integer salesProceeds;
 
@@ -117,8 +117,9 @@ public class TicketBooth {
     // より良い命名があれば教えていただきたいです。。
     // NOTE done 命名って基本的に役割を表すで、確かチケット情報もっているが、その中のquantityはmutableだから、quantityの状態を持っているクラスでも言えるので、
     // TicketStateくらいは思いつきましたが今のままでもいいですね。 by winkichanwi 20200520
+    // NOTE winkichanwi TicketState の方がぼくのイメージと合っていたので、変更しました。
 
-    private TicketBuyResult buyTicket(TicketInfo ticketInfo, int handedMoney) {
+    private TicketBuyResult buyTicket(TicketState ticketInfo, int handedMoney) {
         if (ticketInfo.getStoredQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }

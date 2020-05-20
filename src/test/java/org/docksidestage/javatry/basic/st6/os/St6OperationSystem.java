@@ -31,11 +31,11 @@ abstract class St6OperationSystem {
     //                                                                         ===========
     public St6OperationSystem(String loginId) {
         this.loginId = loginId;
-        this.osType = getOsType();
+        this.osType = initOsType();
     }
 
-    // TODO kamiura 初期化のためであればメソッド名はinitOsTypeなどがいいかな by winkichanwi 20200520
-    protected String getOsType() {
+    // TODO done kamiura 初期化のためであればメソッド名はinitOsTypeなどがいいかな by winkichanwi 20200520
+    protected String initOsType() {
         return "unknown";
     }
 
