@@ -185,7 +185,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // 適切な関数名とメソッド名を用いることで、見る側に大きな処理の流れをまず見てから、その後細かい処理を考えさせることができると思います。
     // ただ、その分メソッドが正しく動いているかわからないところがデメリットでもあると思います。
     // 2. Step05 を実装していて、OneDayとTwoDayで処理を共通化できるところにもメリットがあると感じました。
-    // TODO [comment] Good! by subaru (2020/04/23)
+    // done [comment] Good! by subaru (2020/04/23)
 
     private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
         if (ticket.isAlreadyIn()) {
@@ -269,7 +269,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // 関数の引数、親クラスとして与えられた場合も、動作は同じ
         // 参照渡しになっていると思います。
-        // TODO [comment] いいですね、その通りです。 by subaru (2020/04/23)
+        // done [comment] いいですね、その通りです。 by subaru (2020/04/23)
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -309,7 +309,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Animal クラスの soundLoudly() を見つけられていませんでした。
         // intelliJ で Shift+⌘+F でファイルを超えた検索機能を使おうと思います。
-        // TODO done [comment] (もし知っていなければ)今回のように特定のメソッドがどこで override されているかどうか調べたい時はメソッドで command + option + b が便利です。 by subaru (2020/04/23)
+        // done [comment] (もし知っていなければ)今回のように特定のメソッドがどこで override されているかどうか調べたい時はメソッドで command + option + b が便利です。 by subaru (2020/04/23)
         // 今回でいうと Loudable インターフェースの soundLoudly メソッドで上のショートカットを実行すると soundLoudly の実装先一覧が表示されます。
     }
 
@@ -336,7 +336,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // NOTE teachers このようなクラスやインターフェースの関係を理解する場合、
         // ノートの上で木構造を作りながら理解していけば大丈夫なのですか？
-        // TODO done [comment] java においてはそれで良いと思います。 by subaru (2020/04/23)
+        // done [comment] java においてはそれで良いと思います。 by subaru (2020/04/23)
         // 別に木構造が絶対と言うことではないけど、いい方法の一つということで理解して大丈夫だと思います。
         // ただし多重継承が可能なプログラミング言語においては単純な木構造にはならなくなるので注意です（java は多重継承は不可です）。
         // 少し話は脱線するけど、時間があれば多重継承の問題などこちらの記事わかりやすいのでおすすめです。
@@ -366,7 +366,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // NOTE teachers クラスやインスタンスの継承元が複数ある場合は、
         // 宣言時のクラスをどれにするかで、
         // 使用できるメソッドが異なるという理解で大丈夫ですか？
-        // TODO done [comment] そうだね。 by subaru (2020/04/23)
+        // done [comment] そうだね。 by subaru (2020/04/23)
         // ただしダウンキャストしてあげればそのキャストしたクラスに実装されているメソッドは使うことができます。
         // 不適切なダウンキャストをするとエラーになるので注意は必要だけど。
     }
@@ -401,8 +401,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
         // Crawler と HighJumper を思いつきましたが、
         // Turtle に implement させるために、runner 内に　Crawler を実装しました。
-        // TODO done [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
-        // TODO done subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
+        // done [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
+        // done subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
         // NOTE done いいですね、まあ、moverの命名はおいといて、このパッケージの汎用性によって、runnerとcrawlerは一つのmoverパッケージではなく、二つパッケージに別れる考え方もあります。 winkichanwi 20200511
         Crawler turtle = new Turtle();
         turtle.crawl();
@@ -463,8 +463,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     public void test_objectOriented_writing_withDelegation() {
         // your confirmation code here
 
-        // TODO done teachers レビューお願いします。
-        // TODO done teachers この問題の修正版(HitPoint クラスを使わないもの)を下のコミットに含めて行いました。
+        // done teachers レビューお願いします。
+        // done teachers この問題の修正版(HitPoint クラスを使わないもの)を下のコミットに含めて行いました。
 
         // delegation の意味を調べました。
         // delegation (委譲) は処理を別クラスのメソッドに任せる場合に用いるものであり、
