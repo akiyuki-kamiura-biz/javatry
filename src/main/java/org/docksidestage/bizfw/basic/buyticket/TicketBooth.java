@@ -111,11 +111,11 @@ public class TicketBooth {
     // 「同じ引数の組み合わせを多くの関数で使用されている場合はクラスとして抽出する（データの群れ）」という方法を教わったので、今回はそれを適用しました。
     // この手法で適切であったかのフィードバックをいただきたいです。
     // ticketQuantity クラスの用途を広げて、ticketLabel, ticketPrice をメンバ変数として持つ ticketInfo クラスを用意しました。
-    // NOTE うまいですね！早速コードスメルについての知識活用したんだね。ここはdata clumpsというコードスメルの対策です。by winkichanwi 20200520
+    // NOTE done うまいですね！早速コードスメルについての知識活用したんだね。ここはdata clumpsというコードスメルの対策です。by winkichanwi 20200520
 
     // TODO done teachers また、ticketInfo クラスという命名が適切かについても少し疑問が残ります。。。
     // より良い命名があれば教えていただきたいです。。
-    // NOTE 命名って基本的に役割を表すで、確かチケット情報もっているが、その中のquantityはmutableだから、quantityの状態を持っているクラスでも言えるので、
+    // NOTE done 命名って基本的に役割を表すで、確かチケット情報もっているが、その中のquantityはmutableだから、quantityの状態を持っているクラスでも言えるので、
     // TicketStateくらいは思いつきましたが今のままでもいいですね。 by winkichanwi 20200520
 
     private TicketBuyResult buyTicket(TicketInfo ticketInfo, int handedMoney) {

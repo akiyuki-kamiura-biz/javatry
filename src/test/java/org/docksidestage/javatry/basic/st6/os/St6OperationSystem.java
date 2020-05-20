@@ -53,7 +53,7 @@ abstract class St6OperationSystem {
     // あくまでこのクラスは概念的なもので実際に呼び出される時は、Mac OS や Windows OS という具体的な OS の時のみということであれば
     // 抽象メソッドとして定義した方がよいかも。
 
-    // TODO teachers abstarct メソッドに変更するにあたり, abstract クラスに変更しました。
+    // TODO done teachers abstarct メソッドに変更するにあたり, abstract クラスに変更しました。
     // この場合、他の変数やメソッドの扱いはこのままでよろしいのでしょうか？
     abstract protected String getFileSeparator();
     abstract protected String getUserDirectory();

@@ -189,7 +189,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
         // NOTE done (winkichanwi) null を許すというより、補足すると、その持っているものはnullでもいいから、箱にいれておく。
         // また処理の中に存在するかという情報を取っておかないとだめというのを明示になっている。
 
-        // TODO　teachers つまり optional は この値はnull かもしれないよ、と
+        // TODO teachers つまり optional は この値はnull かもしれないよ、と
         //  コードを書く別のエンジニアに対して明示的に警告をする役割があるということですか？
     }
 
@@ -270,17 +270,18 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      */
     public void test_java8_optional_orElseThrow() {
         Optional<St8Member> optMember = new St8DbFacade().selectMember(2);
-        St8Member member = optMember.orElseThrow(() -> new IllegalStateException("over"));
+        // optional<St8Member(memberId, "dockside", new St8Withdrawal(12, null)>
+        St8Member member = optMember.orElseThrow(() -> new IllegalStateException("over")); // St8Member(memberId, "dockside", new St8Withdrawal(12, null)
         String sea = "the";
         try {
             String reason = member.getWithdrawal().map(wdl -> wdl.oldgetPrimaryReason()).orElseThrow(() -> {
-                return new IllegalStateException("wave");
+                return new IllegalStateException("wave"); //
             });
             sea = reason;
         } catch (IllegalStateException e) {
             sea = e.getMessage();
         }
-        log(sea); // your answer? =>  // TODO done kamiura 答えもれました〜 winkichanwi 20200520
+        log(sea); // your answer? => wave // TODO done kamiura 答えもれました〜 winkichanwi 20200520
     }
 
     // ===================================================================================
