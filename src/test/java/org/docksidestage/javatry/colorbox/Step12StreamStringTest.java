@@ -59,15 +59,18 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // TODO teachers 冗長ではないか、正しい処理になっているのかについて、
+        // TODO done teachers 冗長ではないか、正しい処理になっているのかについて、
         //  このような書き方でいいのかをフィードバックいただきたいです。
 
         String answer = colorBoxList.stream()
+                // TODO kamiura ここから2行は .flatMap(colorBox -> colorBox.getSpaceList().stream()) に書き換えられる by winkichanwi 20200520
+                // ここは多分flatMapあまりわかってないでしょうか？
                 .map(colorBox -> colorBox.getSpaceList())
                 .flatMap(Collection::stream)
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof String)
                 .map(obj -> String.valueOf(obj))
+                // TODO kamiura .maxのドキュメントをよく見るとComparatorの引数を求めているから、書き換えてみてわからないなら聞いてください by winkicahnwi 20200520
                 .max((l, r) -> l.length() - r.length())
                 .orElse("*not found");
 

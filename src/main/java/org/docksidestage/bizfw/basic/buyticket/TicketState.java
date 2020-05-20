@@ -1,6 +1,6 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO kamiura クラスが長くなったら、別ファイルにおいた方がいいかも by winkichanwi 20200520
+// done kamiura クラスが長くなったら、別ファイルにおいた方がいいかも by winkichanwi 20200520
 public class TicketState {
     private int days;
     private int storedQuantity;
