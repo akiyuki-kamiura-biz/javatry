@@ -219,9 +219,9 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(obj -> obj instanceof String)
                 .map(obj -> (String) obj)
                 .filter(str -> str.endsWith("front"))
+                .map(str -> str.indexOf("front")+1)
                 .findFirst()
-                .orElse("*not found")
-                .indexOf("front") + 1;
+                .orElse(-1);
 
         log(answer);
     }
