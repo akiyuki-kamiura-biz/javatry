@@ -102,8 +102,8 @@ public class Step07ExceptionTest extends PlainTestCase {
             log(file.getCanonicalPath());
         } catch (java.io.IOException e) {
             log(e.getMessage());
-            // TODO kamiura printStackTreeというメソッドあるよ winkichanwi 20200513
-            log(e.getStackTrace());
+            // TODO done kamiura printStackTreeというメソッドあるよ winkichanwi 20200513
+            e.printStackTrace();
         }
     }
 

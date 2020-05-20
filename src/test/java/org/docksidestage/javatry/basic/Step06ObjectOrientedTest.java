@@ -403,7 +403,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // Turtle に implement させるために、runner 内に　Crawler を実装しました。
         // TODO done [質問] Crawler を runner パッケージに配置するのは適切でしょうか？ by subaru (2020/04/23)
         // TODO done subaru runner パッケージ名を mover に変更しましたが、命名にはしっくりきていません。
-        // NOTE いいですね、まあ、moverの命名はおいといて、このパッケージの汎用性によって、runnerとcrawlerは一つのmoverパッケージではなく、二つパッケージに別れる考え方もあります。 winkichanwi 20200511
+        // NOTE done いいですね、まあ、moverの命名はおいといて、このパッケージの汎用性によって、runnerとcrawlerは一つのmoverパッケージではなく、二つパッケージに別れる考え方もあります。 winkichanwi 20200511
         Crawler turtle = new Turtle();
         turtle.crawl();
 

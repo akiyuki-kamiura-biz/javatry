@@ -25,32 +25,51 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
+
     private static final int MAX_QUANTITY = 10;
-    private static final int ONE_DAY_PRICE = 7400; // when 2019/06/15
-    private static final int TWO_DAY_PRICE = 13200;
-    private static final int FOUR_DAY_PRICE = 22400;
 
-    class Quantity {
-        private int quantity;
+    class TicketInfo {
+        private int days;
+        private int storedQuantity;
+        private int ticketPrice;
+        private String ticketLabel;
 
-        public Quantity(int initialQuantity) {
-            this.quantity = initialQuantity;
+        public TicketInfo(int days, String ticketLabel, int ticketPrice, int initialQuantity) {
+            this.days = days;
+            this.ticketLabel = ticketLabel;
+            this.ticketPrice = ticketPrice;
+            this.storedQuantity = initialQuantity;
         }
 
-        public void decrement() {
-            quantity -= 1;
+        public void decrementQuantity() {
+            storedQuantity -= 1;
         }
 
-        public int getQuantity() { return quantity; }
+        // accessor
+        public int getDays() {
+            return days;
+        }
+
+        public String getTicketLabel() {
+            return ticketLabel;
+        }
+
+        public int getTicketPrice() {
+            return ticketPrice;
+        }
+
+        public int getStoredQuantity() {
+            return storedQuantity;
+        }
     }
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
 
-    private Quantity oneDayQuantity = new Quantity(MAX_QUANTITY);
-    private Quantity twoDayQuantity = new Quantity(MAX_QUANTITY);
-    private Quantity fourDayQuantity = new Quantity(MAX_QUANTITY);
+    private TicketInfo oneDayTicketInfo = new TicketInfo(1, "OneDay", 7400, MAX_QUANTITY);
+    private TicketInfo twoDayTicketInfo = new TicketInfo(2, "TwoDay", 13200, MAX_QUANTITY);
+    private TicketInfo fourDayTicketInfo = new TicketInfo(4, "FourDay", 22400, MAX_QUANTITY);
 
     private Integer salesProceeds;
 
@@ -68,18 +87,15 @@ public class TicketBooth {
     // (人にも寄るけど、新卒研修ではそのようにお願いします。でも良い再利用ですね^^)
 
     public TicketBuyResult buyOneDayPassport(int handedMoney) {
-        String ticketLabel = "OneDay";
-        return buyTicket(1, ticketLabel, handedMoney, ONE_DAY_PRICE, oneDayQuantity);
+        return buyTicket(oneDayTicketInfo, handedMoney);
     }
 
     public TicketBuyResult buyTwoDayPassport(int handedMoney) {
-        String ticketLabel = "TwoDay";
-        return buyTicket(1, ticketLabel, handedMoney, TWO_DAY_PRICE, twoDayQuantity);
+        return buyTicket(twoDayTicketInfo, handedMoney);
     }
 
     public TicketBuyResult buyFourDayPassport(int handedMoney){
-        String ticketLabel = "FourDay";
-        return buyTicket(1, ticketLabel, handedMoney, FOUR_DAY_PRICE, fourDayQuantity);
+        return buyTicket(fourDayTicketInfo, handedMoney);
     }
 
     // TODO done teachers ヘルパーメソッドをこの位置に移動しました！
@@ -87,31 +103,40 @@ public class TicketBooth {
     // 大枠で区切られていた方がわかりやすいと思ったのですが、これに関してはどう思われますか？
     // NOTE Helperメソッドは基本的にHelperメソッドを使うメソッドの近くに置くことで、追いやすい方向ですね by winkichanwi 20200511
 
-    // TODO kamiura さらに訓練ですが、他のStep進んで余裕があったこそここに戻ってくださいね by winkichanwi 20200511
+    // TODO done kamiura さらに訓練ですが、他のStep進んで余裕があったこそここに戻ってくださいね by winkichanwi 20200511
     // 基本的にticketLabelによって、どのticketPriceとどのQuantityを渡すのが決まっていますよね。それを表現するためにリファクタしてみてもらえます？
-    private TicketBuyResult buyTicket(int days, String ticketLabel, int handedMoney, int ticketPrice, Quantity ticketQuantity) {
-        if (ticketQuantity.getQuantity() <= 0) {
+
+    // TODO teachers (winki さんの上の質問に対して) テストの考え方という講義の Code Smell という考え方の中に、
+    // 「同じ引数の組み合わせを多くの関数で使用されている場合はクラスとして抽出する（データの群れ）」という方法を教わったので、今回はそれを適用しました。
+    // この手法で適切であったかのフィードバックをいただきたいです。
+    // ticketQuantity クラスの用途を広げて、ticketLabel, ticketPrice をメンバ変数として持つ ticketInfo クラスを用意しました。
+
+    // TODO teachers また、ticketInfo クラスという命名が適切かについても少し疑問が残ります。。。
+    // より良い命名があれば教えていただきたいです。。
+
+    private TicketBuyResult buyTicket(TicketInfo ticketInfo,  int handedMoney) {
+        if (ticketInfo.getStoredQuantity() <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
-        if (handedMoney < ticketPrice) {
+        if (handedMoney < ticketInfo.getTicketPrice()) {
             throw new TicketShortMoneyException("Short money: " + handedMoney);
         }
 
-        ticketQuantity.decrement();
+        ticketInfo.decrementQuantity();
 
         if (salesProceeds != null) {
-            salesProceeds = salesProceeds + ticketPrice;
+            salesProceeds = salesProceeds + ticketInfo.getTicketPrice();
         } else {
-            salesProceeds = ticketPrice;
+            salesProceeds = ticketInfo.getTicketPrice();
         }
 
-        int change = handedMoney - ticketPrice;
+        int change = handedMoney - ticketInfo.getTicketPrice();
 
         Ticket ticket;
-        if (days == 1) {
-            ticket = new OneDayTicket(ticketPrice, ticketLabel);
+        if (ticketInfo.getDays() == 1) {
+            ticket = new OneDayTicket(ticketInfo.getTicketPrice(), ticketInfo.getTicketLabel());
         } else {
-            ticket = new MultipleDaysTicket(ticketPrice, days, ticketLabel);
+            ticket = new MultipleDaysTicket(ticketInfo.getTicketPrice(), ticketInfo.getDays(), ticketInfo.getTicketLabel());
         }
 
         TicketBuyResult tbr = new TicketBuyResult(ticket, change);
@@ -140,11 +165,11 @@ public class TicketBooth {
     //                                                                            Accessor
     //                                                                            ========
     public int getOneDayQuantity() {
-        return oneDayQuantity.getQuantity();
+        return oneDayTicketInfo.getStoredQuantity();
     }
 
     public int getTwoDayQuantity() {
-        return twoDayQuantity.getQuantity();
+        return twoDayTicketInfo.getStoredQuantity();
     }
 
     public Integer getSalesProceeds() {
