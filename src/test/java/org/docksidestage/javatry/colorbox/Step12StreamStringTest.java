@@ -185,6 +185,22 @@ public class Step12StreamStringTest extends PlainTestCase {
      * ("front" で終わる文字列をしまっているカラーボックスの色は？)
      */
     public void test_endsWith_findLastWord() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        String answer = colorBoxList.stream()
+                .map(colorBox -> {
+                    Boolean isContainedTargetString = colorBox.getSpaceList().stream()
+                            .map(boxSpace -> boxSpace.getContent())
+                            .filter(obj -> obj instanceof String)
+                            .map(obj -> (String) obj)
+                            .anyMatch(str -> str.endsWith("front"));
+
+                    return isContainedTargetString ? colorBox.getColor().getColorName() : null;
+                }).filter(str -> str != null)
+                .findFirst()
+                .orElse("*not found");
+
+        log(answer);
     }
 
     // ===================================================================================
