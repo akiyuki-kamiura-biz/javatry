@@ -59,6 +59,9 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_length_findMax() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
+        // TODO teachers 冗長ではないか、正しい処理になっているのかについて、
+        //  このような書き方でいいのかをフィードバックいただきたいです。
+
         String answer = colorBoxList.stream()
                 .map(colorBox -> colorBox.getSpaceList())
                 .flatMap(Collection::stream)
