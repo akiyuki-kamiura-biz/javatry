@@ -18,6 +18,7 @@ package org.docksidestage.javatry.framework;
 import org.docksidestage.bizfw.di.nondi.NonDiDirectFirstAction;
 import org.docksidestage.bizfw.di.nondi.NonDiDirectSecondAction;
 import org.docksidestage.bizfw.di.nondi.NonDiFactoryMethodAction;
+import org.docksidestage.bizfw.di.nondi.NonDiIndividualFactoryAction;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -139,8 +140,15 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiFactoryMethodAction と NonDiIndividualFactoryAction の違いは？)
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
-        // your answer? => 
+        // your answer? => FactoryMethod に対して、IndividualFactory では、
+        //                    生成ロジックを別クラスに切り出しているため、
         // and your confirmation code here freely
+
+        NonDiIndividualFactoryAction ndifa = new NonDiIndividualFactoryAction();
+        // "tofu" => "spagetti" に変更しました
+        ndifa.callFriend();
+//        ndifa.wakeupMe();
+
     }
 
     // ===================================================================================

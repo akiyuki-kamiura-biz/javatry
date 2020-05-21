@@ -25,7 +25,8 @@ import org.docksidestage.bizfw.di.cast.TooLazyDog;
 public class NonDiAnimalFactory {
 
     public Animal createAnimal() {
-        TooLazyDog dog = new TooLazyDog("tofu");
+//        TooLazyDog dog = new TooLazyDog("tofu");
+        TooLazyDog dog = new TooLazyDog("spagetti");
         dog.petMe();
         dog.playWith(new Cat());
         return dog;
