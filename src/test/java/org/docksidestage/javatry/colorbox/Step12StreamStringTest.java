@@ -165,7 +165,7 @@ public class Step12StreamStringTest extends PlainTestCase {
 
         String answer = colorBoxList.stream()
                 // TODO done kamiura mapしてからnullをfilterするよりfilterしてからmapした方がnull扱わなくて良いので、書き換えてみたください by winkichanwi 20200521
-                // NOTE winkichanwi なるほど！感動しました！ by akiyuki
+                // NOTE winkichanwi なるほど！感動しました！ by akiyuki_kamiura
                .filter(colorBox -> {
                     return colorBox.getSpaceList().stream()
                             .map(boxSpace -> boxSpace.getContent())
