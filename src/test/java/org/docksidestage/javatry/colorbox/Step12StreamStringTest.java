@@ -16,7 +16,8 @@
 package org.docksidestage.javatry.colorbox;
 
 import java.io.File;
-import java.util.*;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
@@ -163,17 +164,18 @@ public class Step12StreamStringTest extends PlainTestCase {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
         String answer = colorBoxList.stream()
+                // TODO kamiura mapしてからnullをfilterするよりfilterしてからmapした方がnull扱わなくて良いので、書き換えてみたください by winkichanwi 20200521
                 .map(colorBox -> {
-                    Boolean isContainedTargetString = colorBox.getSpaceList().stream()
+                    Boolean isContainedTargetString = colorBox.getSpaceList()
+                            .stream()
                             .map(boxSpace -> boxSpace.getContent())
                             .filter(obj -> obj instanceof String)
                             .map(obj -> (String) obj)
+                            // [comment] anyMatchの使い方いいね by winkichanwi 20205021
                             .anyMatch(str -> str.startsWith("Water"));
 
                     return isContainedTargetString ? colorBox.getColor().getColorName() : null;
-                }).filter(str -> str != null)
-                .findFirst()
-                .orElse("*not found");
+                }).filter(str -> str != null).findFirst().orElse("*not found");
 
         log(answer);
     }
@@ -185,18 +187,16 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_endsWith_findLastWord() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        String answer = colorBoxList.stream()
-                .map(colorBox -> {
-                    Boolean isContainedTargetString = colorBox.getSpaceList().stream()
-                            .map(boxSpace -> boxSpace.getContent())
-                            .filter(obj -> obj instanceof String)
-                            .map(obj -> (String) obj)
-                            .anyMatch(str -> str.endsWith("front"));
+        String answer = colorBoxList.stream().map(colorBox -> {
+            Boolean isContainedTargetString = colorBox.getSpaceList()
+                    .stream()
+                    .map(boxSpace -> boxSpace.getContent())
+                    .filter(obj -> obj instanceof String)
+                    .map(obj -> (String) obj)
+                    .anyMatch(str -> str.endsWith("front"));
 
-                    return isContainedTargetString ? colorBox.getColor().getColorName() : null;
-                }).filter(str -> str != null)
-                .findFirst()
-                .orElse("*not found");
+            return isContainedTargetString ? colorBox.getColor().getColorName() : null;
+        }).filter(str -> str != null).findFirst().orElse("*not found");
 
         log(answer);
     }
@@ -217,10 +217,11 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(obj -> obj instanceof String)
                 .map(obj -> (String) obj)
                 .filter(str -> str.endsWith("front"))
-                .map(str -> str.indexOf("front")+1)
+                .map(str -> str.indexOf("front") + 1)
                 .findFirst()
                 .orElse(-1);
 
+        // TODO kamiura -1はどういう意味ですか？意味のある出力をしてください by winkichanwi 20200520
         log(answer);
     }
 
@@ -237,14 +238,17 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(obj -> obj instanceof String)
                 .map(obj -> (String) obj)
                 .map(str -> {
+                    // TODO kamiura indexOfのやり方では悪くないけど、もうちょっと早い・みやすい方法あります。splitをみてみてください by winkichanwi 20200521
                     int firstIndex = str.indexOf("ど");
                     int secondIndex = -1;
-                    if (firstIndex != -1 && firstIndex != str.length()-1) {
-                        secondIndex = str.substring(firstIndex+1).indexOf("ど");
+                    if (firstIndex != -1 && firstIndex != str.length() - 1) {
+                        // TODO kamiura .subStringと使うより、indexOf(String str, int fromIndex)というメソッドありますよ by winkichanwi 20200521
+                        secondIndex = str.substring(firstIndex + 1).indexOf("ど");
                     }
 
                     return (secondIndex != -1) ? (firstIndex + secondIndex + 1) + 1 : null;
-                }).filter(str -> str != null)
+                })
+                .filter(str -> str != null)
                 .findFirst()
                 .orElse(-1);
 
@@ -287,7 +291,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(obj -> obj instanceof String)
                 .map(obj -> (String) obj)
                 .filter(str -> str.startsWith("Water"))
-                .map(str -> String.valueOf(str.charAt(str.length()-1)))
+                .map(str -> String.valueOf(str.charAt(str.length() - 1)))
                 .findFirst()
                 .orElse("*not found");
 
