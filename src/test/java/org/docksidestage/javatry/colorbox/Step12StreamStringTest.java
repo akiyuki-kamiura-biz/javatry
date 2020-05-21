@@ -187,16 +187,17 @@ public class Step12StreamStringTest extends PlainTestCase {
     public void test_endsWith_findLastWord() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        String answer = colorBoxList.stream().map(colorBox -> {
-            Boolean isContainedTargetString = colorBox.getSpaceList()
-                    .stream()
-                    .map(boxSpace -> boxSpace.getContent())
-                    .filter(obj -> obj instanceof String)
-                    .map(obj -> (String) obj)
-                    .anyMatch(str -> str.endsWith("front"));
-
-            return isContainedTargetString ? colorBox.getColor().getColorName() : null;
-        }).filter(str -> str != null).findFirst().orElse("*not found");
+        String answer = colorBoxList.stream()
+                .filter(colorBox -> {
+                    return colorBox.getSpaceList()
+                            .stream()
+                            .map(boxSpace -> boxSpace.getContent())
+                            .filter(obj -> obj instanceof String)
+                            .map(obj -> (String) obj)
+                            .anyMatch(str -> str.endsWith("front"));
+                })
+                .map(colorBox -> colorBox.getColor().getColorName())
+                .findFirst().orElse("*not found");
 
         log(answer);
     }
