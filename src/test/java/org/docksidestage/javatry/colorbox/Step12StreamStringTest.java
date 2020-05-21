@@ -238,7 +238,7 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .filter(obj -> obj instanceof String)
                 .map(obj -> (String) obj)
                 .map(str -> {
-                    // TODO kamiura indexOfのやり方では悪くないけど、もうちょっと早い・みやすい方法あります。splitをみてみてください by winkichanwi 20200521
+                    // TODO kamiura [訓練] indexOfのやり方では悪くないけど、splitのバージョン余裕あればやってみてください by winkichanwi 20200521
                     int firstIndex = str.indexOf("ど");
                     int secondIndex = -1;
                     if (firstIndex != -1 && firstIndex != str.length() - 1) {
