@@ -17,6 +17,7 @@ package org.docksidestage.javatry.framework;
 
 import org.docksidestage.bizfw.di.nondi.NonDiDirectFirstAction;
 import org.docksidestage.bizfw.di.nondi.NonDiDirectSecondAction;
+import org.docksidestage.bizfw.di.nondi.NonDiFactoryMethodAction;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -109,8 +110,28 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectSecondAction と NonDiFactoryMethodAction の違いは？)
      */
     public void test_nondi_difference_between_second_and_FactoryMethod() {
-        // your answer? => 
+        // your answer? => Factory Method では SecondAction における生成ロジックを共通化して切り出しているため、
+        //          生成ロジックを変更する際の変更箇所が少ないし、可読性が高いと思いました
         // and your confirmation code here freely
+
+        NonDiDirectSecondAction nddsa = new NonDiDirectSecondAction();
+        NonDiFactoryMethodAction ndfma = new NonDiFactoryMethodAction();
+
+        log("========== callFriend() ");
+        nddsa.callFriend();
+        ndfma.callFriend();
+
+        log("========== wakeupMe() ");
+        nddsa.wakeupMe();
+        ndfma.wakeupMe();
+
+        log("========== goToOffice()");
+//        nddsa.goToOffice();
+//        ndfma.goToOffice();
+
+        log("========== sendGift()");
+//        nddsa.sendGift();
+//        ndfma.sendGift();
     }
 
     /**
