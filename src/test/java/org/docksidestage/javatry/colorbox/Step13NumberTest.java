@@ -55,6 +55,20 @@ public class Step13NumberTest extends PlainTestCase {
      * (カラーボックの中に入っている数値で、0から54までの値は何個ある？)
      */
     public void test_countZeroToFiftyFour_Number() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        // TODO teachers Long型にキャスト
+        // String に数字が文字列として格納されている場合は今回は少しわかりませんでした。
+
+        long answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof Number)
+                .mapToLong(obj -> ((Number) obj).longValue())
+                .filter(num -> 0 <= num || num <= 54)
+                .count();
+
+        log(answer);
     }
 
     /**
