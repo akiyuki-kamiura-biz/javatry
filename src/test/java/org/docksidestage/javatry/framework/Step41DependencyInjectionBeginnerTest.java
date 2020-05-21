@@ -141,7 +141,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
         // your answer? => FactoryMethod に対して、IndividualFactory では、
-        //                    生成ロジックを別クラスに切り出しているため、
+        //                    生成ロジックを別ファイルに切り出しているため、変更が容易でした
         // and your confirmation code here freely
 
         NonDiIndividualFactoryAction ndifa = new NonDiIndividualFactoryAction();
@@ -161,6 +161,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
         // your answer? => 
         // and your confirmation code here freely
+
     }
 
     /**
