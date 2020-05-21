@@ -48,6 +48,7 @@ public class BarkingProcess {
 
     private BarkedSound doBark(String barkWord) {
         decrementHitPoint();
+        System.out.println(barkWord);
         return new BarkedSound(barkWord);
     }
 

@@ -15,6 +15,8 @@
  */
 package org.docksidestage.javatry.framework;
 
+import org.docksidestage.bizfw.di.nondi.NonDiDirectFirstAction;
+import org.docksidestage.bizfw.di.nondi.NonDiDirectSecondAction;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -60,8 +62,40 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (NonDiDirectFirstAction と NonDiDirectSecondAction の違いは？)
      */
     public void test_nondi_difference_between_first_and_second() {
-        // your answer? => 
+        // your answer? =>
+        // 実装レベルの違いをまとめながら考察するためまとめます。
+        // callFriend() について:  first では Dog クラスを初期化して、 bark() しているだけの実装に対して、
+        //                       second では TooLazyDog クラスを使用して、内部では Cat クラスが　bark()　しており、
+        //                       second は TooLazyDog と Cat の二つに依存しています。
+        // wakeupMe() について  :  second では、Cat の2回目の bark() で hitPoint が0になってしまい、Exceptionを吐かれます
+        // goToOffice(), sendGift() について:  first では、superCarDealer が初期化され、orderSupercar していますが、
+        //                                    特定の clientRequirement にて実行すると必ずエラーを吐かれる実装になっています
+        //                                    second では、superCarManufacturer の makeSuperCar のオーバーライドを行なっており、
+        //                                    結果として、誤った clientRequirement にて実行している goToOffice() のみエラーが起こります
+        //
+        // first と second の違いというよりは、依存していることで不利だと感じた点は、
+        // - callFriend(), wakeupMe() での first においては、
         // and your confirmation code here freely
+
+        NonDiDirectFirstAction nddfa = new NonDiDirectFirstAction();
+        NonDiDirectSecondAction nddsa = new NonDiDirectSecondAction();
+
+        log("========== callFriend() ");
+        nddfa.callFriend();
+        nddsa.callFriend();
+
+        log("========== wakeupMe() ");
+//        nddfa.wakeupMe();
+//        nddsa.wakeupMe();
+
+        log("========== goToOffice()");
+//        nddfa.goToOffice();
+//        nddsa.goToOffice();
+
+        log("========== sendGift()");
+//        nddfa.sendGift();
+//        nddsa.sendGift();
+
     }
 
     /**
