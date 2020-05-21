@@ -15,10 +15,22 @@
  */
 package org.docksidestage.javatry.framework;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.Cat;
+import org.docksidestage.bizfw.basic.supercar.SupercarDealer;
+import org.docksidestage.bizfw.basic.supercar.SupercarManufacturer;
+import org.docksidestage.bizfw.di.cast.TooLazyDog;
+import org.docksidestage.bizfw.di.container.component.SimpleInject;
 import org.docksidestage.bizfw.di.nondi.NonDiDirectFirstAction;
 import org.docksidestage.bizfw.di.nondi.NonDiDirectSecondAction;
 import org.docksidestage.bizfw.di.nondi.NonDiFactoryMethodAction;
 import org.docksidestage.bizfw.di.nondi.NonDiIndividualFactoryAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAccessorAction;
+import org.docksidestage.bizfw.di.usingdi.UsingDiAnnotationAction;
+import org.docksidestage.bizfw.di.usingdi.settings.UsingDiModule;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -141,7 +153,7 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      */
     public void test_nondi_difference_between_FactoryMethod_and_IndividualFactory() {
         // your answer? => FactoryMethod に対して、IndividualFactory では、
-        //                    生成ロジックを別ファイルに切り出しているため、変更が容易でした
+        //                    生成ロジックを別ファイルに切り出しているため、変更がより容易でした
         // and your confirmation code here freely
 
         NonDiIndividualFactoryAction ndifa = new NonDiIndividualFactoryAction();
@@ -159,9 +171,48 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
      * (UsingDiAccessorAction と UsingDiAnnotationAction の違いは？)
      */
     public void test_usingdi_difference_between_Accessor_and_Annotation() {
-        // your answer? => 
+        // your answer? => UsingDiAccessorAction がセッターインジェクションなのに対して、
+        //                 UsingDiAnnotationAction がフィールドインジェクションの方式を取っている。
         // and your confirmation code here freely
 
+        // init animal
+        TooLazyDog dog = new TooLazyDog("spagetti");
+        dog.petMe();
+        dog.playWith(new Cat());
+
+        // init supercarDealer
+        SupercarDealer dealer = new SupercarDealer() {
+            @Override
+            protected SupercarManufacturer createSupercarManufacturer() {
+                return new SupercarManufacturer() {
+                    @Override
+                    public Supercar makeSupercar(String catalogKey) {
+                        log("...Making supercar by {}", catalogKey); // extension here
+                        return super.makeSupercar(catalogKey);
+                    }
+                };
+            }
+        };
+
+        UsingDiAccessorAction accessorAction = new UsingDiAccessorAction();
+        accessorAction.setAnimal(dog);
+        accessorAction.setSupercarDealer(dealer);
+
+        accessorAction.callFriend();
+        accessorAction.goToOffice();
+
+        // TODO teachres 初期化の方法がわかりませんでした
+//        Map<Class<?>, Object> componentMap = new HashMap<Class<?>, Object>() {
+//            {
+//                put(Animal.class, dog);
+//                put(SupercarDealer.class, dealer);
+//            }
+//        };
+//        UsingDiModule module = new UsingDiModule();
+//        module.bind(componentMap);
+//
+//        UsingDiAnnotationAction annotaionAction = new UsingDiAnnotationAction();
+//        annotaionAction.callFriend();
     }
 
     /**
