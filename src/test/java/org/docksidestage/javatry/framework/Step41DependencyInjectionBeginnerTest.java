@@ -73,8 +73,14 @@ public class Step41DependencyInjectionBeginnerTest extends PlainTestCase {
         //                                    second では、superCarManufacturer の makeSuperCar のオーバーライドを行なっており、
         //                                    結果として、誤った clientRequirement にて実行している goToOffice() のみエラーが起こります
         //
-        // first と second の違いというよりは、依存していることで不利だと感じた点は、
-        // - callFriend(), wakeupMe() での first においては、
+        // first と second の違いというよりは、依存していることで不利だと感じた点を以下に列挙します
+        // - callFriend(), wakeupMe() での first においては、dog.bark() はプリントするものではなく、
+        //                  　barkedSound を返すものなので、正しい使い方を理解しなければならないこと　or BarkedSound へも暗に依存していること
+        // - callFriend(), wakeupMe() での second については、new するだけではなく、
+        //                   はじめにいくつかの処理を経ないと必ずエラーを吐く処理が存在するため、知っておく必要があること
+        // - goToOffice(), sendGift() については、 dealer.orderSupercar について、特定の条件では必ずエラーが吐かれることを知っておく必要があること
+        //                   or おそらくこれらのメソッドをテストする時に、すごくテストしづらい状況になってしまうため、
+        //                      デバッグする際には second のような手法を用いてデバッグしなければならないことがすごく手間であること
         // and your confirmation code here freely
 
         NonDiDirectFirstAction nddfa = new NonDiDirectFirstAction();
