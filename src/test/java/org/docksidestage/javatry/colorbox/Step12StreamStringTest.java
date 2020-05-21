@@ -15,13 +15,11 @@
  */
 package org.docksidestage.javatry.colorbox;
 
-import java.awt.*;
+import java.io.File;
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.docksidestage.bizfw.colorbox.ColorBox;
-import org.docksidestage.bizfw.colorbox.space.BoxSpace;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
 import org.docksidestage.unit.PlainTestCase;
 
@@ -324,6 +322,22 @@ public class Step12StreamStringTest extends PlainTestCase {
      * カラーボックスに入ってる java.io.File のパス文字列のファイルセパレーターの "/" を、Windowsのファイルセパレーターに置き換えた文字列は？
      */
     public void test_replace_fileseparator() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        String answer = colorBoxList.stream()
+                .flatMap(colorBox -> colorBox.getSpaceList().stream())
+                .map(boxSpace -> boxSpace.getContent())
+                .filter(obj -> obj instanceof File)
+                .map(obj -> ((File) obj).toString())
+                .map(str -> "c:¥¥" + str.substring(1))
+                .map(str -> str.replace("/", "¥¥"))
+                .findFirst()
+                .orElse("*not found");
+
+        log(answer);
+
+        // NOTE 問題とは関係ないけど、c:¥¥　を最初につけるべき...?
+
     }
 
     // ===================================================================================
@@ -334,6 +348,7 @@ public class Step12StreamStringTest extends PlainTestCase {
      * (カラーボックスの中に入っているDevilBoxクラスのtextの長さの合計は？)
      */
     public void test_welcomeToDevil() {
+
     }
 
     // ===================================================================================
