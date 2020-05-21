@@ -164,18 +164,18 @@ public class Step12StreamStringTest extends PlainTestCase {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
         String answer = colorBoxList.stream()
-                // TODO kamiura mapしてからnullをfilterするよりfilterしてからmapした方がnull扱わなくて良いので、書き換えてみたください by winkichanwi 20200521
-                .map(colorBox -> {
-                    Boolean isContainedTargetString = colorBox.getSpaceList()
-                            .stream()
+                // TODO done kamiura mapしてからnullをfilterするよりfilterしてからmapした方がnull扱わなくて良いので、書き換えてみたください by winkichanwi 20200521
+                // NOTE winkichanwi なるほど！感動しました！ by akiyuki
+               .filter(colorBox -> {
+                    return colorBox.getSpaceList().stream()
                             .map(boxSpace -> boxSpace.getContent())
                             .filter(obj -> obj instanceof String)
                             .map(obj -> (String) obj)
                             // [comment] anyMatchの使い方いいね by winkichanwi 20205021
                             .anyMatch(str -> str.startsWith("Water"));
-
-                    return isContainedTargetString ? colorBox.getColor().getColorName() : null;
-                }).filter(str -> str != null).findFirst().orElse("*not found");
+                })
+                .map(colorBox -> colorBox.getColor().getColorName())
+                .findFirst().orElse("*not found");
 
         log(answer);
     }
