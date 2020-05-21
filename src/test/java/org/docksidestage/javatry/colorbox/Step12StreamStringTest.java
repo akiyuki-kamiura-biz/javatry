@@ -333,9 +333,12 @@ public class Step12StreamStringTest extends PlainTestCase {
                 .flatMap(colorBox -> colorBox.getSpaceList().stream())
                 .map(boxSpace -> boxSpace.getContent())
                 .filter(obj -> obj instanceof File)
+                // TODO kamiura Fileを直接toStringは欲しいもの取れるけど、他の人から見るとパス取得していることが見えないので、
+                // 可読性のため、toStringは避けた方がいいですね by winkichanwi 20200521
                 .map(obj -> ((File) obj).toString())
                 .map(str -> "c:¥¥" + str.substring(1))
                 .map(str -> str.replace("/", "¥¥"))
+                // TODO kamiura ここはlistで出力してもやってみてもらいたい by winkichanwi 20200521
                 .findFirst()
                 .orElse("*not found");
 
